@@ -9,14 +9,14 @@
 </head>
 
 <body class="text-center">
-<form class="form-signin" th:action="@{/user/login}" method="post">
+<form class="form-signin" th:action="@{/user/signin}" method="post">
     <img class="mb-4" th:src="@{/static/asserts/img/bootstrap-solid.svg}" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.signin_tip}">Please sign in</h1>
     <p style="color:red" th:text="${session.msg}" th:if="${not #strings.isEmpty(session.msg)}"></p>
     <p style="color:red" th:text="${session.wrong_name}" th:if="${not #strings.isEmpty(session.wrong_name)}"></p>
     <!--  手机号  -->
-    <label class="sr-only" th:text="#{login.signin_username}">Username</label>
-    <input type="text" name = "username" class="form-control" placeholder="Username" th:placeholder="#{login.signin_password}">
+    <label class="sr-only" th:text="#{login.signin_phonenum}">Phonenum</label>
+    <input type="text" name = "phonenum" class="form-control" placeholder="phonenum" th:placeholder="#{login.signin_phonenum}">
 
     <!--  密码  -->
     <label class="sr-only" th:text="#{login.signin_password}">Password</label>
