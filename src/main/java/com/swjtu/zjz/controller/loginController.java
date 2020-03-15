@@ -31,19 +31,20 @@ public class loginController {
 //            session.setAttribute("wrong_name","用户名密码错误");
 //            return "login";
 //        }
-        if(!StringUtils.isEmpty(username)){
+        if(!StringUtils.isEmpty(username) && !StringUtils.isEmpty(password)){
             OwnerAccount ownerAccount = ownerAccountMapper.select(username);
-            if(username == ownerAccount.getPhonenum() && password == ownerAccount.getPassword()){
+            System.out.println(ownerAccount);
+            if(username.equals(ownerAccount.getPhonenum()) && password.equals(ownerAccount.getPassword())){
                 session.setAttribute("loginUser",username);
                 return "redirect:/main.html";
             }else {
-                session.setAttribute("wrong_name","用户名或密码错误");
-                return "login";
+                //session.setAttribute("wrong_name","用户名或密码错误");
+                return "redirect:/login";
             }
         }else{
             //登录失败
-            session.setAttribute("wrong_name","用户名密码错误");
-            return "login";
+            //session.setAttribute("wrong_name","用户名密码错误");
+            return "redirect:/login";
         }
     }
 }

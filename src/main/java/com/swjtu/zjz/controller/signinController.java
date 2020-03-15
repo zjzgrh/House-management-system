@@ -14,7 +14,7 @@ public class signinController {
     @Autowired
     private OwnerAccountMapper ownerAccountMapper;
 
-    @PostMapping("/user/signin")
+    @PostMapping(value = "/user/signin")
     public String signin(@RequestParam("phonenum") String phonenum,
                          @RequestParam("password") String password){
         if(!StringUtils.isEmpty(phonenum)){

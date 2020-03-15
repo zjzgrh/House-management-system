@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface OwnerAccountMapper {
 
-    @Insert("insert into owner_account(phonenum,passowrd) values (#{phonenum},#{password})")
+    @Insert("insert into owner_account(phonenum,password) values (#{phonenum},#{password})")
     public void insert (OwnerAccount ownerAccount);
 
     @Select("select * from owner_account where phonenum = #{phonenum}")
