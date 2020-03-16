@@ -28,9 +28,9 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
         */
             request.getSession().setAttribute("msg","没有权限，请先登录");
             System.out.println(session.getAttribute("msg"));
-            System.out.println("测试一下：页面跳转前进行输出");
+//            System.out.println("测试一下：页面跳转前进行输出");
             response.sendRedirect("/login");
-            System.out.println("测试一下：页面跳转后进行输出");
+//            System.out.println("测试一下：页面跳转后进行输出");
             return false;
         }else {
             //已登录
