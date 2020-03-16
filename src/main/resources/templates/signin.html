@@ -12,15 +12,15 @@
 <form class="form-signin" th:action="@{/user/signin}" method="post">
     <img class="mb-4" th:src="@{/static/asserts/4.4.1/img/bootstrap-solid.svg}" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.signin_tip}">Please sign in</h1>
-    <p style="color:red" th:text="${session.msg}" th:if="${not #strings.isEmpty(session.msg)}"></p>
-    <p style="color:red" th:text="${session.wrong_name}" th:if="${not #strings.isEmpty(session.wrong_name)}"></p>
+    <!--错误提示-->
+    <p style="color:red" th:text="${msg}" if="${not #strings.isEmpty(msg)}"></p>
     <!--  手机号  -->
     <label class="sr-only" th:text="#{login.signin_phonenum}">Phonenum</label>
-    <input type="text" name = "phonenum" class="form-control" placeholder="phonenum" th:placeholder="#{login.signin_phonenum}">
+    <input th:value="${phonenum}" type="text" name = "phonenum" class="form-control" placeholder="phonenum" th:placeholder="#{login.signin_phonenum}">
 
     <!--  密码  -->
     <label class="sr-only" th:text="#{login.signin_password}">Password</label>
-    <input type="password" name="password" class="form-control" placeholder="Password" th:placeholder="#{login.signin_password}" >
+    <input th:value="${password}" type="password" name="password" class="form-control" placeholder="Password" th:placeholder="#{login.signin_password}" >
     <div class="checkbox mb-3">
         <label>
             <input type="checkbox" value="remember-me" th:placeholder="#{login.signin_remember}" >[[#{login.signin_remember}]]

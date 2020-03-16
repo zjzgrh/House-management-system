@@ -34,11 +34,19 @@ public class loginController {
 //            session.setAttribute("wrong_name","用户名密码错误");
 //            return "login";
 //        }
-
-        if(!StringUtils.isEmpty(username) && !StringUtils.isEmpty(password)){
+        if(StringUtils.isEmpty(username) && !StringUtils.isEmpty(password)){
+            model.addAttribute("msg","用户名为空啊！！！");
+            return "login";
+        }else if(!StringUtils.isEmpty(username) && StringUtils.isEmpty(password)){
+            model.addAttribute("msg","密码为空啊！！！");
+            return "login";
+        }else if(StringUtils.isEmpty(username) && StringUtils.isEmpty(password)){
+            model.addAttribute("msg","用户名和密码为空啊！！！");
+            return "login";
+        }else {
             OwnerAccount ownerAccount = ownerAccountMapper.select(username);
             if(ownerAccount == null){
-                model.addAttribute("msg","用户名或密码错误");
+                model.addAttribute("msg","用户名不存在，请检查用户名或进行注册！");
                 return "login";
             }
             System.out.println(ownerAccount);
@@ -46,13 +54,9 @@ public class loginController {
                 session.setAttribute("loginUser",username);
                 return "redirect:/main.html";
             }else {
-                model.addAttribute("msg","用户名或密码错误");
+                model.addAttribute("msg","密码错误，请检查密码并重新输入");
                 return "login";
             }
-        }else{
-            //登录失败
-            model.addAttribute("msg","用户名或密码错误");
-            return "login";
         }
     }
 }
