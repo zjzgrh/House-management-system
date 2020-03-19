@@ -18,6 +18,7 @@ public class signinController {
     @PostMapping(value = "/user/signin")
     public String signin(@RequestParam("phonenum") String phonenum,
                          @RequestParam("password") String password,
+                         @RequestParam("role") String role,
                          Model model){
         if(StringUtils.isEmpty(phonenum) && StringUtils.isEmpty(password)){
             model.addAttribute("msg","请输入用户名和密码！");
@@ -45,6 +46,7 @@ public class signinController {
             OwnerAccount ownerAccount1 = new OwnerAccount();
             ownerAccount1.setPhonenum(phonenum);
             ownerAccount1.setPassword(password);
+            ownerAccount1.setRole(role);
             ownerAccountMapper.insert(ownerAccount1);
             System.out.println(ownerAccount1);
             return "redirect:/login";

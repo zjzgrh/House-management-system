@@ -21,6 +21,14 @@
     <label class="sr-only" th:text="#{login.signin_password}">Password</label>
     <input th:value="${password}" type="password" name="password" class="form-control" placeholder="Password" th:placeholder="#{login.signin_password}" >
 
+    <!--    选择注册角色-->
+    <label class="radio-inline">
+        <input type="radio" name="role" id="optionsRadios1" value="owner" checked> 房主
+    </label>
+    <label class="radio-inline">
+        <input type="radio" name="role" id="optionsRadios2"  value="rent"> 租户
+    </label>
+
 <!--    <div class="checkbox mb-3">-->
 <!--        <label>-->
 <!--            <input type="checkbox" value="remember-me" th:placeholder="#{login.signin_remember}" >[[#{login.signin_remember}]]-->
