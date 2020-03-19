@@ -20,11 +20,14 @@ public class signinController {
                          @RequestParam("password") String password,
                          @RequestParam("role") String role,
                          Model model){
+        //用户名和密码都为空
         if(StringUtils.isEmpty(phonenum) && StringUtils.isEmpty(password)){
             model.addAttribute("msg","请输入用户名和密码！");
             return "redirect:/signin";
+        //用户名不为空，密码为空
         }else if(!StringUtils.isEmpty(phonenum) && StringUtils.isEmpty(password)){
             OwnerAccount ownerAccount = ownerAccountMapper.select(phonenum);
+            //用户名被注册
             if(ownerAccount != null){
                 model.addAttribute("msg","用户名已被注册！！！");
                 return "signin";
@@ -32,23 +35,28 @@ public class signinController {
             model.addAttribute("phonenum",phonenum);
             model.addAttribute("msg","请输入密码！");
             return "signin";
+        //用户名不为空，密码为空
         }else if(StringUtils.isEmpty(phonenum) && !StringUtils.isEmpty(password)){
             model.addAttribute("password",password);
             model.addAttribute("msg","请输入手机号！");
             return "signin";
+        //用户名密码都不为空
         }else{
             OwnerAccount ownerAccount = ownerAccountMapper.select(phonenum);
+            //判断用户名是否被注册
             if(ownerAccount != null){
                 model.addAttribute("phonenum",phonenum);
                 model.addAttribute("msg","用户名已被注册！！！");
                 return "signin";
             }
+            //将用户名写入数据库
             OwnerAccount ownerAccount1 = new OwnerAccount();
             ownerAccount1.setPhonenum(phonenum);
             ownerAccount1.setPassword(password);
             ownerAccount1.setRole(role);
             ownerAccountMapper.insert(ownerAccount1);
-            System.out.println(ownerAccount1);
+            //System.out.println(ownerAccount1);
+            //跳转到登录页面
             return "redirect:/login";
         }
     }
