@@ -23,6 +23,7 @@ public class loginController {
     @PostMapping(value = "/user/login")
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
+                        @RequestParam("role") String role,
                         HttpSession session, Model model){
         //session.setAttribute("msg","没有权限，请先登录");
 //        if(!StringUtils.isEmpty(username) && "123".equals(password)){
@@ -55,7 +56,11 @@ public class loginController {
             System.out.println(ownerAccount);
             if(username.equals(ownerAccount.getPhonenum()) && password.equals(ownerAccount.getPassword())){
                 session.setAttribute("loginUser",username);
-                return "redirect:/main.html";
+                if(role.equals("owner")){
+                    return "redirect:/main.html";
+                }else {
+                    return "redirect:/rent_main.html";
+                }
             }else {
                 model.addAttribute("username",username);
                 model.addAttribute("msg","密码错误，请检查密码并重新输入");
