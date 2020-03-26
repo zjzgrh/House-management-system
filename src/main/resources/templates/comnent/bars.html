@@ -24,6 +24,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a>欢迎您</a></li>
+                        <li><a th:text="${session.loginUser}"></a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 退出 <span class="caret"></span></a>
@@ -38,14 +39,18 @@
 <nav class="d-none d-md-block bg-light sidebar-sticky" th:fragment="sidebar">
     <ul class="nav nav-pills nav-stacked col-md-2 nav flex-column">
         <li role="presentation" id="bar-0">
-            <a th:href="@{/main.html}"  >
+            <a class="nav-header" th:href="@{/main.html}"
+                th:class="${textmutedUrl == 'main.html' ? 'nav-header' : 'nav-header text-muted'}">
+                <!--span的作用是调用图标-->
                 <span class="glyphicon glyphicon-th"></span>
                 首页
             </a>
         </li>
 
         <li role="presentation" id="bar-1">
-            <a href="#docCollapse1" class="nav-header collapse text-muted" data-toggle="collapse" id="collapseParent1" >
+            <a href="#docCollapse1" class="nav-header text-muted collapse" data-toggle="collapse" id="collapseParent1"
+               th:class="${textmutedUrl == 'houselist' ? 'nav-header collapse' : 'nav-header text-muted collapse'}">
+                <!--span的作用是调用图标-->
                 <span class="glyphicon glyphicon-home "></span>
                 房源信息
                 <!--向下的箭头-->
@@ -53,7 +58,10 @@
             </a>
             <!--collapse in：作用是将折叠默认设置为展开状态。   collapse ：作用是将折叠默认设置为闭合状态。-->
             <ul id="docCollapse1" class="nav nav-list collapse in" >
-                <li><a th:href="@{/houselist}" class="text-center">房源查看</a></li>
+                <li>
+                    <a th:href="@{/houselist}" class="nav-header text-muted text-center"
+                       th:class="${textmutedUrl == 'houselist' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">房源查看</a>
+                </li>
                 <li><a href="#" class="text-center">添加房源</a></li>
             </ul>
         </li>
@@ -61,6 +69,7 @@
         <li role="presentation" id="bar-2">
 
             <a href="#docCollapse2" class="nav-header collapsed text-muted" data-toggle="collapse" id="collapseParent2">
+                <!--span的作用是调用图标-->
                 <span class="glyphicon glyphicon-jpy"></span>
                 租金信息
                 <!--向下的箭头-->
@@ -74,6 +83,7 @@
 
         <li role="presentation" id="bar-3">
             <a href="#docCollapse3" class="nav-header collapsed text-muted" data-toggle="collapse" id="collapseParent3">
+                <!--span的作用是调用图标-->
                 <span class="glyphicon glyphicon-list-alt"></span>
                 合同信息
                 <span class="pull-right glyphicon glyphicon-chevron-down"></span>
@@ -86,6 +96,7 @@
 
         <li role="presentation" id="bar-4">
             <a href="#docCollapse4" class="nav-header collapsed text-muted" data-toggle="collapse" id="collapseParent4" onclick="chevron_toggle()">
+                <!--span的作用是调用图标-->
                 <span class="glyphicon glyphicon-user"></span>
                 个人信息
                 <span class="pull-right glyphicon glyphicon-chevron-down"></span>

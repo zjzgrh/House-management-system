@@ -10,41 +10,17 @@
 
 	<!-- Custom styles for this template -->
 <!--	<link href="asserts/css/dashboard.css" rel="stylesheet">-->
-	<style type="text/css">
-		/* Chart.js */
 
-		@-webkit-keyframes chartjs-render-animation {
-			from {
-				opacity: 0.99
-			}
-			to {
-				opacity: 1
-			}
-		}
-
-		@keyframes chartjs-render-animation {
-			from {
-				opacity: 0.99
-			}
-			to {
-				opacity: 1
-			}
-		}
-
-		.chartjs-render-monitor {
-			-webkit-animation: chartjs-render-animation 0.001s;
-			animation: chartjs-render-animation 0.001s;
-		}
-	</style>
 </head>
 
 	<body>
-	<!-- 顶部 -->
+	<!-- 顶部栏调用 -->
 	<div th:replace="comnent/bars::topbar"></div>
+	<!-- 主体部分 -->
 	<div class="container-fluid">
 			<div class="row">
-			<!--侧边栏-->
-			<div th:replace="comnent/bars::sidebar"></div>
+			<!--侧边栏调用-->
+			<div th:replace="comnent/bars::sidebar(textmutedUrl = 'houselist')"></div>
 			<!--右侧主体部分-->
 			<!--jumbotron:将div整个模块的背景变为灰色-->
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
@@ -182,11 +158,6 @@
 		</div>
 	</div>
 
-	<!-- Bootstrap core JavaScript================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script type="text/javascript" src="../static/asserts/4.4.1/js/jquery-3.2.1.slim.min.js"></script>
-	<script type="text/javascript" src="../static/asserts/4.4.1/js/popper.min.js"></script>
-	<script type="text/javascript" src="../static/asserts/4.4.1/js/bootstrap.min.js"></script>
 
 	<!-- Icons -->
 	<script type="text/javascript" src="../static/asserts/4.4.1/js/feather.min.js"></script>
