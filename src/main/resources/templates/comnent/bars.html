@@ -62,7 +62,8 @@
                     <a th:href="@{/emps}" class="nav-header text-muted text-center"
                        th:class="${textmutedUrl == 'houselist' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">房源查看</a>
                 </li>
-                <li><a th:href="" class="text-center">添加房源</a></li>
+                <li><a th:href="@{/emp}" class="text-center"
+                       th:class="${textmutedUrl == 'addhouse' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">添加房源</a></li>
             </ul>
         </li>
 

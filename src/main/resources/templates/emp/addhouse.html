@@ -21,24 +21,39 @@
         <!--jumbotron:将div整个模块的背景变为灰色-->
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <div class="jumbotron d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                <form class="form-horizontal" action="@{emp}" method="post">
+                <form class="form-horizontal" th:action="@{/emp}" method="post">
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Email</label>
-                        <div class="col-sm-10">
-                            <input type="" class="form-control" id="inputEmail3" placeholder="Email">
+                        <label class="col-sm-4 control-label">房子地址</label>
+                        <div class="col-sm-4">
+                            <input th:name="Address" th:class="form-control" th:id="Address" th:placeholder="房子地址">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Password</label>
-                        <div class="col-sm-10">
-                            <input type="" class="form-control" id="inputPassword3" placeholder="Password">
+                        <label class="col-sm-4 control-label">月租</label>
+                        <div class="col-sm-4">
+                            <input th:name="Monthlyrent" th:class="form-control" th:id="Monthlyrent" th:placeholder="月租">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
+                        <label class="col-sm-4 control-label">描述</label>
+                        <div class="col-sm-4">
+                            <input th:name="Detail" th:class="form-control" th:id="Detail" th:placeholder="描述">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">面积</label>
+                        <div class="col-sm-4">
+                            <input th:name="Area" th:class="form-control" th:id="Area" th:placeholder="面积">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
                             <button type="submit" class="btn btn-default">添加</button>
                         </div>
                     </div>

@@ -7,6 +7,14 @@ public class House {
     private String house_detail;
     private Integer house_area;
 
+    public House(){}
+    public House(String house_address,Integer house_monthlyrent,String house_detail,Integer house_area){
+        this.house_address = house_address;
+        this.house_monthlyrent = house_monthlyrent;
+        this.house_detail = house_detail;
+        this.house_area = house_area;
+    }
+
     public Integer getHouse_id() {
         return house_id;
     }
