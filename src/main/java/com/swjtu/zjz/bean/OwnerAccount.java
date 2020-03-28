@@ -1,13 +1,9 @@
 package com.swjtu.zjz.bean;
 
-import org.springframework.context.annotation.Bean;
-
-
 public class OwnerAccount {
     private String phonenum;
     private String password;
     private String role;
-
     public String getRole() {
         return role;
     }
