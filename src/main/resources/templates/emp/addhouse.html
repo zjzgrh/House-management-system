@@ -22,25 +22,28 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <div class="jumbotron d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                 <form class="form-horizontal" th:action="@{/emp}" method="post">
-
+                    <input type="hidden" name="_method" value="put" th:if="${house != null}">
+                    <input type="hidden" name="id" th:value="${house.house_id}" th:if="${house!=null}">
                     <div class="form-group">
                         <label class="col-sm-4 control-label">房子地址</label>
                         <div class="col-sm-4">
-                            <input th:name="Address" th:class="form-control" th:id="Address" th:placeholder="房子地址">
+                            <input th:name="Address" th:class="form-control" th:id="Address" th:placeholder="房子地址"
+                                   th:value="${house != null}?${house.house_address}">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label">月租</label>
                         <div class="col-sm-4">
-                            <input th:name="Monthlyrent" th:class="form-control" th:id="Monthlyrent" th:placeholder="月租">
+                            <input th:name="Monthlyrent" th:class="form-control" th:id="Monthlyrent" th:placeholder="月租"
+                                   th:value="${house != null}?${house.house_monthlyrent}">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label">描述</label>
                         <div class="col-sm-4">
-                            <input th:name="Detail" th:class="form-control" th:id="Detail" th:placeholder="描述">
+                            <input th:name="Detail" th:class="form-control" th:id="Detail" th:placeholder="描述" th:value="${house != null}?${house.house_detail}">
                         </div>
                     </div>
 
@@ -48,13 +51,13 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label">面积</label>
                         <div class="col-sm-4">
-                            <input th:name="Area" th:class="form-control" th:id="Area" th:placeholder="面积">
+                            <input th:name="Area" th:class="form-control" th:id="Area" th:placeholder="面积" th:value="${house != null}?${house.house_area}">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-sm-offset-4 col-sm-8">
-                            <button type="submit" class="btn btn-default">添加</button>
+                            <button type="submit" class="btn btn-default" th:text="${house != null}?'修改':'添加'">添加</button>
                         </div>
                     </div>
                 </form>

@@ -20,7 +20,6 @@ public class addhouseController {
                            @RequestParam("Detail") String Detail,
                            @RequestParam("Area") Integer Area){
         House house = new House(Address,Monthlyrent,Detail,Area);
-        houseMapper.addhouse(house);
         return "redirect:/emps";
     }
 }
