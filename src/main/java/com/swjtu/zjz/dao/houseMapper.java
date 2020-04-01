@@ -1,13 +1,12 @@
-package com.swjtu.zjz.mapper;
+package com.swjtu.zjz.dao;
 
-import com.swjtu.zjz.bean.House;
+import com.swjtu.zjz.model.House;
 import org.apache.ibatis.annotations.*;
-import org.omg.CORBA.INTERNAL;
 
 import java.util.List;
 
 @Mapper
-public interface HouseMapper {
+public interface houseMapper {
 
     @Delete("delete from house where house_id = #{house_id}")
     void deleteid(Integer house_id);

@@ -1,15 +1,14 @@
-package com.swjtu.zjz.bean;
+package com.swjtu.zjz.model;
 
-public class OwnerAccount {
+public class TenantAccount {
     private String phonenum;
     private String password;
-    private String role;
-    public String getRole() {
-        return role;
-    }
 
-    public void setRole(String role) {
-        this.role = role;
+    public TenantAccount(){}
+
+    public TenantAccount(String phonenum,String password){
+        this.phonenum = phonenum;
+        this.password = password;
     }
 
     public String getPhonenum() {
@@ -30,10 +29,9 @@ public class OwnerAccount {
 
     @Override
     public String toString() {
-        return "OwnerAccount{" +
+        return "TenantAccount{" +
                 "phonenum='" + phonenum + '\'' +
                 ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
                 '}';
     }
 }

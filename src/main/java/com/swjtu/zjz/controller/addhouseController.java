@@ -1,8 +1,6 @@
 package com.swjtu.zjz.controller;
 
-import com.swjtu.zjz.bean.House;
-import com.swjtu.zjz.mapper.HouseMapper;
-import org.hibernate.annotations.Parameter;
+import com.swjtu.zjz.model.House;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class addhouseController {
 
     @Autowired
-    private HouseMapper houseMapper;
+    private com.swjtu.zjz.dao.houseMapper houseMapper;
 
     @PostMapping("/emp")
     public String addHouse(@RequestParam("Address") String Address,
@@ -20,6 +18,8 @@ public class addhouseController {
                            @RequestParam("Detail") String Detail,
                            @RequestParam("Area") Integer Area){
         House house = new House(Address,Monthlyrent,Detail,Area);
+        houseMapper.addhouse(house);
+        System.out.println("添加了一个房源信息：" + house);
         return "redirect:/emps";
     }
 }

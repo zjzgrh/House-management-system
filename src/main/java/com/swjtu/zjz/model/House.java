@@ -1,4 +1,4 @@
-package com.swjtu.zjz.bean;
+package com.swjtu.zjz.model;
 
 public class House {
     private Integer house_id;
