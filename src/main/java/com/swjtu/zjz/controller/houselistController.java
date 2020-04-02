@@ -36,13 +36,14 @@ public class houselistController {
 
     @PutMapping("/emp")
     public String update(@RequestParam("id") Integer id,
-                         @RequestParam("Address") String Address,
-                         @RequestParam("Monthlyrent") Integer Monthlyrent,
-                         @RequestParam("Detail") String Detail,
-                         @RequestParam("Area") Integer Area){
-        House house = new House(Address,Monthlyrent,Detail,Area);
+                         @RequestParam("Address") String Address, @RequestParam("Monthlyrent") Integer Monthlyrent,
+                         @RequestParam("Detail") String Detail, @RequestParam("Area") Integer Area,
+                         @RequestParam("Use") String Use, @RequestParam("Type") String Type,
+                         @RequestParam("Floor") Integer Floor,@RequestParam("Decoration") String Decoration,
+                         @RequestParam("Identitynum") String Identitynum, @RequestParam("Situation") char Situation){
+        House house = new House(Address,Monthlyrent,Detail,Area,Use,Type,Floor,Decoration,Identitynum,Situation);
         house.setHouse_id(id);
-        System.out.println(house);
+        System.out.println("待修改的房子信息：" + house);
         houseMapper.updateHouse(house);
         System.out.println("修改了一个房源信息：" + house);
         return "redirect:/emps";
