@@ -14,6 +14,13 @@ public class houselistController {
     @Autowired
     private com.swjtu.zjz.dao.houseMapper houseMapper;
 
+    /*
+        查找语句：get请求
+        修改语句：put请求
+        添加语句：Post请求
+        删除语句：delete请求
+    */
+
     @GetMapping("/emps")
     public String houselist(Model model){
         List<House> houselists = houseMapper.findHouseList();

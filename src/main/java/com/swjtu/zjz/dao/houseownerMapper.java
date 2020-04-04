@@ -7,10 +7,10 @@ import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface houseownerMapper {
-    @Insert("insert into house_owner (owner_identitynum,owner_name,owner_sex,owner_age,phonenum) " +
-            "values (#{owner_identitynum},#{owner_name},#{owner_sex},#{owner_age},#{phonenum})")
+    @Insert("insert into house_owner (owner_identitynum,owner_name,owner_sex,owner_age) " +
+            "values (#{owner_identitynum},#{owner_name},#{owner_sex},#{owner_age})")
     void addhouseowner(HouseOwner houseOwner);
 
-    @Select("select * from house_owner where phonenum = #{phonenum}")
-    HouseOwner findHouseOwner(String phonenum);
+    @Select("select * from house_owner where owner_identitynum = #{owner_identitynum}")
+    HouseOwner findHouseOwner(String owner_identitynum);
 }

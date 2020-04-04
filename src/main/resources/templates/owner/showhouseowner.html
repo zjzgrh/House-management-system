@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>个人信息</title>
+    <title>查看账户信息</title>
     <!-- 3.3.7版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/dist/css/bootstrap.min.css}" crossorigin="anonymous">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,49 +16,41 @@
 <div class="container-fluid">
     <div class="row">
         <!--侧边栏调用-->
-        <div th:replace="comnent/bars::sidebar(textmutedUrl = 'houseowner')"></div>
+        <div th:replace="comnent/bars::sidebar(textmutedUrl = 'owneraccount')"></div>
         <!--右侧主体部分-->
         <!--jumbotron:将div整个模块的背景变为灰色-->
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <div class="jumbotron d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                <form class="form-horizontal" th:action="@{/owner}" method="post">
-<!--                    <input type="hidden" name="_method" value="put" >-->
-<!--                    <input type="hidden" name="id" >-->
-                    <!-- 房主身份证号  -->
+                <form class="form-horizontal"  method="get">
+
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">房主身份证号</label>
+                        <label class="col-sm-4 control-label">身份证号</label>
                         <div class="col-sm-4">
-                            <input th:name="identitynum" th:class="form-control" th:id="identitynum" th:placeholder="房主身份证号">
-                        </div>
-                    </div>
-                    <!-- 姓名  -->
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">姓名</label>
-                        <div class="col-sm-4">
-                            <input th:name="name" th:class="form-control" th:id="name" th:placeholder="姓名">
-                        </div>
-                    </div>
-                    <!-- 性别  -->
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">性别</label>
-                        <div class="col-sm-4">
-                            <input th:name="sex" th:class="form-control" th:id="sex" th:placeholder="性别" >
-                        </div>
-                    </div>
-                    <!-- 年龄  -->
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">年龄</label>
-                        <div class="col-sm-4">
-                            <input th:name="age" th:class="form-control" th:id="age" th:placeholder="年龄">
+                            <p class="form-control-static" th:text="${houseOwner.owner_identitynum}"></p>
                         </div>
                     </div>
 
-                    <!-- 添加  -->
                     <div class="form-group">
-                        <div class="col-sm-offset-4 col-sm-8">
-                            <button type="submit" class="btn btn-default">添加</button>
+                        <label class="col-sm-4 control-label">姓名</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static" th:text="${houseOwner.owner_name}"></p>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">性别</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static" th:text="${houseOwner.owner_sex}"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">出生日期</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static" th:text="${houseOwner.owner_age}"></p>
+                        </div>
+                    </div>
+
                 </form>
             </div>
         </main>

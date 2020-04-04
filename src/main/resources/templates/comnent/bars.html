@@ -50,7 +50,7 @@
 
         <li role="presentation" id="bar-1">
             <a href="#docCollapse1" class="nav-header text-muted collapse" data-toggle="collapse" id="collapseParent1"
-               th:class="${textmutedUrl == 'houselist' ? 'nav-header collapse' : 'nav-header text-muted collapse'}">
+               th:class="${textmutedUrl == 'houselist' || textmutedUrl == 'addhouse' ? 'nav-header collapse' : 'nav-header text-muted collapse'}">
                 <!--span的作用是调用图标-->
                 <span class="glyphicon glyphicon-home "></span>
                 房源信息
@@ -99,7 +99,7 @@
 
         <li role="presentation" id="bar-4">
             <a href="#docCollapse4" class="nav-header collapsed text-muted" data-toggle="collapse" id="collapseParent4"
-               th:class="${textmutedUrl == 'houseowner' ? 'nav-header collapse' : 'nav-header text-muted collapse'}">
+               th:class="${textmutedUrl == 'owneraccount'||textmutedUrl == 'houseowner' ? 'nav-header collapse' : 'nav-header text-muted collapse'}">
                 <!--span的作用是调用图标-->
                 <span class="glyphicon glyphicon-user"></span>
                 个人信息
@@ -109,7 +109,7 @@
                 <li><a th:href="@{/accs}" class="text-center"
                        th:class="${textmutedUrl == 'owneraccount' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">信息查看</a>
                 </li>
-                <li><a th:href="@{/owner}" class="text-center"
+                <li><a th:href="@{/owners}" class="text-center"
                        th:class="${textmutedUrl == 'houseowner' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">实名认证</a>
                 </li>
             </ul>
