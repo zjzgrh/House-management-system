@@ -7,16 +7,14 @@ public class HouseTenant {
     private String tenant_name;
     private char tenant_sex;
     private Date tenant_age;
-    private String phonenum;
 
     public HouseTenant(){}
 
-    public HouseTenant(String tenant_identitynum, String tenant_name, char tenant_sex, Date tenant_age, String phonenum) {
+    public HouseTenant(String tenant_identitynum, String tenant_name, char tenant_sex, Date tenant_age ) {
         this.tenant_identitynum = tenant_identitynum;
         this.tenant_name = tenant_name;
         this.tenant_sex = tenant_sex;
         this.tenant_age = tenant_age;
-        this.phonenum = phonenum;
     }
 
     public String getTenant_identitynum() {
@@ -51,13 +49,6 @@ public class HouseTenant {
         this.tenant_age = tenant_age;
     }
 
-    public String getPhonenum() {
-        return phonenum;
-    }
-
-    public void setPhonenum(String phonenum) {
-        this.phonenum = phonenum;
-    }
 
     @Override
     public String toString() {
@@ -66,7 +57,6 @@ public class HouseTenant {
                 ", tenant_name='" + tenant_name + '\'' +
                 ", tenant_sex=" + tenant_sex +
                 ", tenant_age=" + tenant_age +
-                ", phonenum='" + phonenum + '\'' +
                 '}';
     }
 }

@@ -69,6 +69,7 @@ public class LoginService implements loginServiceImpl {
                 }
                 //用户名存在数据库，判断密码和角色是否正确，正确就进入主页
                 if (username.equals(tenantAccount.getPhonenum()) && password.equals(tenantAccount.getPassword())) {
+                    //用户名写入session
                     session.setAttribute("loginUser", username);
                     return "redirect:/rent_main.html";
                     //若密码或角色不对，进行相应的提示
