@@ -12,11 +12,13 @@ public class House {
     private String house_decoration; //装修情况
     private String owner_identitynum;
     private char rental_situation; // 租赁情况
+    private char house_apply; // 租赁情况
+    private Integer rent_time;
 
     public House(){}
 
     public House(String house_address, Integer house_monthlyrent, String house_detail, Integer house_area, String house_use,
-                 String house_type, Integer house_floor, String house_decoration, String owner_identitynum, char rental_situation) {
+                 String house_type, Integer house_floor, String house_decoration, String owner_identitynum) {
         this.house_address = house_address;
         this.house_monthlyrent = house_monthlyrent;
         this.house_detail = house_detail;
@@ -26,7 +28,6 @@ public class House {
         this.house_floor = house_floor;
         this.house_decoration = house_decoration;
         this.owner_identitynum = owner_identitynum;
-        this.rental_situation = rental_situation;
     }
 
 
@@ -119,6 +120,22 @@ public class House {
         this.rental_situation = rental_situation;
     }
 
+    public char getHouse_apply() {
+        return house_apply;
+    }
+
+    public void setHouse_apply(char house_apply) {
+        this.house_apply = house_apply;
+    }
+
+    public Integer getRent_time() {
+        return rent_time;
+    }
+
+    public void setRent_time(Integer rent_time) {
+        this.rent_time = rent_time;
+    }
+
     @Override
     public String toString() {
         return "House{" +
@@ -133,6 +150,8 @@ public class House {
                 ", house_decoration='" + house_decoration + '\'' +
                 ", owner_identitynum='" + owner_identitynum + '\'' +
                 ", rental_situation=" + rental_situation +
+                ", house_apply=" + house_apply +
+                ", rent_time=" + rent_time +
                 '}';
     }
 }

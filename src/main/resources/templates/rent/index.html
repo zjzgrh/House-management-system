@@ -1,15 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>首页</title>
+    <!-- 3.3.7版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/dist/css/bootstrap.min.css}" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
-<div class="jumbotron col-md-9 ">
-    <h1>你好，这里是为租客提供的租房系统！！！</h1>
-    <p>本系统包括四个模块， 可以让您方便的寻找适合自己的房子，查看合同，交付租金以及管理个人信息！</p>
+<!-- 顶部 -->
+<div th:replace="comnent/bars::topbar"></div>
+<!-- 主体部分 -->
+<div class="container-fluid">
+    <div class="row" >
+        <!--侧边栏-->
+        <div th:replace="comnent/rentbars::sidebar(textmutedUrl = 'main')"></div>
 
+        <!--右侧内容主体-->
+        <div class="jumbotron col-md-9 ">
+            <h1>你好，这里是为租客提供的租房系统！！！</h1>
+            <p>本系统包括四个模块， 可以让您方便的寻找适合自己的房子，查看合同，交付租金以及管理个人信息！</p>
+        </div>
+
+    </div>
 </div>
 
+<script th:src="@{webjars/jquery/3.4.1/jquery.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js}" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -33,18 +33,26 @@
 									<th>编号</th>
 									<th>地址</th>
 									<th>月租</th>
-									<th>描述</th>
 									<th>面积</th>
+									<th>用途</th>
+									<th>户型</th>
+									<th>楼层</th>
+									<th>装修情况</th>
+									<th>描述</th>
 									<th>操作</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="list:${houselists}">
-									<td th:text="${list.getHouse_id()}"></td>
-									<td th:text="${list.getHouse_address()}"></td>
-									<td th:text="${list.getHouse_monthlyrent()}"></td>
-									<td th:text="${list.getHouse_detail()}"></td>
-									<td th:text="${list.getHouse_area()}"></td>
+									<td th:text="${list.house_id}"></td>
+									<td th:text="${list.house_address}"></td>
+									<td th:text="${list.house_monthlyrent}"></td>
+									<td th:text="${list.house_area}"></td>
+									<td th:text="${list.house_use}"></td>
+									<td th:text="${list.house_type}"></td>
+									<td th:text="${list.house_floor}"></td>
+									<td th:text="${list.house_decoration}"></td>
+									<td th:text="${list.house_detail}"></td>
 									<td>
 										<a th:href="@{/emp/} + ${list.house_id}" class="btn btn-sm btn-primary">修改</a>
 										<a th:attr="delete_uri = @{/emp/} + ${list.house_id}" class="btn btn-sm btn-danger deleteBtn" >删除</a>

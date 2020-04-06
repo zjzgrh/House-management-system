@@ -25,8 +25,11 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a>房屋租赁管理系统欢迎您</a></li>
                         <li><a th:text="用户 + ${session.loginUser}"></a></li>
-                        <li ><a th:href="@{/login}">退出</a></li>
-                        <li ><a>&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                退出 <span class="caret"></span></a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -37,8 +40,8 @@
 <nav class="d-none d-md-block bg-light sidebar-sticky" th:fragment="sidebar">
     <ul class="nav nav-pills nav-stacked col-md-2 nav flex-column">
         <li role="presentation" id="bar-0">
-            <a class="nav-header" th:href="@{/main.html}"
-                th:class="${textmutedUrl == 'main.html' ? 'nav-header' : 'nav-header text-muted'}">
+            <a class="nav-header" th:href="@{/rentmain.html}"
+               th:class="${textmutedUrl == 'main' ? 'nav-header' : 'nav-header text-muted'}">
                 <!--span的作用是调用图标-->
                 <span class="glyphicon glyphicon-th"></span>
                 首页
@@ -47,7 +50,7 @@
 
         <li role="presentation" id="bar-1">
             <a href="#docCollapse1" class="nav-header text-muted collapse" data-toggle="collapse" id="collapseParent1"
-               th:class="${textmutedUrl == 'houselist' || textmutedUrl == 'addhouse' ? 'nav-header collapse' : 'nav-header text-muted collapse'}">
+               th:class="${textmutedUrl == 'renthouselist' || textmutedUrl == 'applyhouselist' ? 'nav-header collapse' : 'nav-header text-muted collapse'}">
                 <!--span的作用是调用图标-->
                 <span class="glyphicon glyphicon-home "></span>
                 房源信息
@@ -57,11 +60,11 @@
             <!--collapse in：作用是将折叠默认设置为展开状态。   collapse ：作用是将折叠默认设置为闭合状态。-->
             <ul id="docCollapse1" class="nav nav-list collapse in" >
                 <li>
-                    <a th:href="@{/emps}" class="nav-header text-muted text-center"
-                       th:class="${textmutedUrl == 'houselist' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">房源查看</a>
+                    <a th:href="@{/renthouselist}" class="nav-header text-muted text-center"
+                       th:class="${textmutedUrl == 'renthouselist' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">房源查看</a>
                 </li>
-                <li><a th:href="@{/emp}" class="text-center"
-                       th:class="${textmutedUrl == 'addhouse' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">添加房源</a>
+                <li><a th:href="@{/applyhouselist}" class="text-center"
+                       th:class="${textmutedUrl == 'applyhouselist' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">申请列表</a>
                 </li>
             </ul>
         </li>
@@ -71,19 +74,13 @@
             <a href="#docCollapse2" class="nav-header collapsed text-muted" data-toggle="collapse" id="collapseParent2">
                 <!--span的作用是调用图标-->
                 <span class="glyphicon glyphicon-jpy"></span>
-                租赁信息
+                租金信息
                 <!--向下的箭头-->
                 <span class="pull-right glyphicon glyphicon-chevron-down"></span>
             </a>
             <ul id="docCollapse2" class="nav nav-list collapse in">
-                <li>
-                    <a th:href="@{/houseapply}" class="text-center"
-                       th:class="${textmutedUrl == 'houseapplylist' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">租房申请</a>
-                </li>
-                <li>
-                    <a href="#" class="text-center"
-                       th:class="${textmutedUrl == 'houseapplylist' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">租金查看</a>
-                </li>
+                <li><a href="#" class="text-center">缴纳情况</a></li>
+                <!--<li><a href="#" class="text-center">租金统计</a></li>-->
             </ul>
         </li>
 
@@ -95,25 +92,25 @@
                 <span class="pull-right glyphicon glyphicon-chevron-down"></span>
             </a>
             <ul id="docCollapse3" class="nav nav-list collapse in">
-                <li><a href="#" class="text-center">合同录入</a></li>
                 <li><a href="#" class="text-center">合同查看</a></li>
+                <!-- <li><a href="#" class="text-center">合同查看</a></li>-->
             </ul>
         </li>
 
         <li role="presentation" id="bar-4">
             <a href="#docCollapse4" class="nav-header collapsed text-muted" data-toggle="collapse" id="collapseParent4"
-               th:class="${textmutedUrl == 'owneraccount'||textmutedUrl == 'houseowner' ? 'nav-header collapse' : 'nav-header text-muted collapse'}">
+               th:class="${textmutedUrl == 'tenantaccount'||textmutedUrl == 'housetenant' ? 'nav-header collapse' : 'nav-header text-muted collapse'}">
                 <!--span的作用是调用图标-->
                 <span class="glyphicon glyphicon-user"></span>
                 个人信息
                 <span class="pull-right glyphicon glyphicon-chevron-down"></span>
             </a>
             <ul id="docCollapse4" class="nav nav-list collapse in">
-                <li><a th:href="@{/accs}" class="text-center"
-                       th:class="${textmutedUrl == 'owneraccount' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">信息查看</a>
+                <li><a th:href="@{/tenantaccs}" class="text-center"
+                       th:class="${textmutedUrl == 'tenantaccount' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">信息查看</a>
                 </li>
-                <li><a th:href="@{/owners}" class="text-center"
-                       th:class="${textmutedUrl == 'houseowner' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">实名认证</a>
+                <li><a th:href="@{/tenants}" class="text-center"
+                       th:class="${textmutedUrl == 'housetenant' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">实名认证</a>
                 </li>
             </ul>
         </li>
