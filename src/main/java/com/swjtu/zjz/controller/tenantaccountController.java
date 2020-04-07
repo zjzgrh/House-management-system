@@ -27,19 +27,20 @@ public class tenantaccountController {
         return "acc/showtenantaccount";
     }
 
-    @GetMapping("/tenantacc/{phonenum}")
-    private String toUpdateOwnerAccount(@PathVariable("phonenum") String phonenum, Model model){
-        TenantAccount tenantAccount = tenantAccountMapper.select(phonenum);
+    @GetMapping("/tenantacc")
+    private String toUpdateOwnerAccount(Model model, HttpSession session){
+        TenantAccount tenantAccount = tenantAccountMapper.select((String) session.getAttribute("loginUser"));
         model.addAttribute("tenantAccount", tenantAccount);
-        return "acc/updatetennataccount";
+        return "acc/updatetenantaccount";
     }
 
     @PutMapping("/tenantacc")
     private String updateOwnerAccount(@RequestParam("phonenum") String phonenum,
-                                      @RequestParam("password") String password){
-        TenantAccount tenantAccount = new TenantAccount(phonenum, password);
-        tenantAccountMapper.updateTenantAccount(tenantAccount);
-        System.out.println(tenantAccount);
+                                      @RequestParam("password") String password,HttpSession session){
+
+        tenantAccountMapper.updateTenantAccount(phonenum,password,(String)session.getAttribute("loginUser"));
+        session.setAttribute("loginUser",phonenum);
         return "redirect:/tenantaccs";
+
     }
 }

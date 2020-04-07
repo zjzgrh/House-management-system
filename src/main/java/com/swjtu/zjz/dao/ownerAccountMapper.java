@@ -15,8 +15,8 @@ public interface ownerAccountMapper {
     @Select("select * from owner_account where phonenum = #{phonenum}")
     OwnerAccount select (String phonenum);
 
-    @Update("update owner_account set phonenum = #{phonenum},password = #{password} where phonenum = #{phonenum}")
-    void updateOwnerAccount(OwnerAccount ownerAccount);
+    @Update("update owner_account set phonenum = #{newphonenum},password = #{newpassword} where phonenum = #{oldphonenum}")
+    void updateOwnerAccount(String newphonenum,String newpassword,String oldphonenum);
 
     @Update("update owner_account set owner_identitynum = #{identitynum} where phonenum = #{phonenum}")
     void updateOwnerAccountIdentitynum(String identitynum,String phonenum);

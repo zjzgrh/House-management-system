@@ -24,19 +24,20 @@ public class owneraccountController {
         return "acc/showowneraccount";
     }
 
-    @GetMapping("/acc/{phonenum}")
-    private String toUpdateOwnerAccount(@PathVariable("phonenum") String phonenum,Model model){
-        OwnerAccount ownerAccount = ownerAccountMapper.select(phonenum);
+    @GetMapping("/acc")
+    private String toUpdateOwnerAccount(Model model, HttpSession session){
+        OwnerAccount ownerAccount = ownerAccountMapper.select((String)session.getAttribute("loginUser"));
+//        System.out.println("看看修改账号时，有没有获取到手机号"+phonenum);
         model.addAttribute("ownerAccount", ownerAccount);
         return "acc/updateowneraccount";
     }
 
     @PutMapping("/acc")
     private String updateOwnerAccount(@RequestParam("phonenum") String phonenum,
-                                      @RequestParam("password") String password){
-        OwnerAccount ownerAccount = new OwnerAccount(phonenum, password);
-        ownerAccountMapper.updateOwnerAccount(ownerAccount);
-        System.out.println(ownerAccount);
+                                      @RequestParam("password") String password, HttpSession session){
+
+        ownerAccountMapper.updateOwnerAccount(phonenum,password,(String)session.getAttribute("loginUser"));
+        session.setAttribute("loginUser",phonenum);
         return "redirect:/accs";
     }
 }

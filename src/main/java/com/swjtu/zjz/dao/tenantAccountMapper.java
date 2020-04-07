@@ -16,8 +16,8 @@ public interface tenantAccountMapper {
     @Select("select * from tenant_account where phonenum = #{phonenum}")
     TenantAccount select (String phonenum);
 
-    @Update("update tenant_account set phonenum = #{phonenum},password = #{password} where phonenum = #{phonenum}")
-    void updateTenantAccount(TenantAccount tenantAccount);
+    @Update("update tenant_account set phonenum = #{newphonenum},password = #{newpassword} where phonenum = #{oldphonenum}")
+    void updateTenantAccount(String newphonenum,String newpassword,String oldphonenum);
 
     @Update("update tenant_account set tenant_identitynum = #{identitynum} where phonenum = #{phonenum}")
     void updateTenantAccountIdentitynum(String identitynum,String phonenum);
