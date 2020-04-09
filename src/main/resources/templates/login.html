@@ -22,8 +22,8 @@
     <span style="color:red" th:text="${msg}"  if="${not #strings.isEmpty(msg)}"></span>
 
     <!--  手机号  -->
-    <label class="sr-only" th:text="#{login.username}">Username</label>
-    <input th:value="${username}" type="text" name = "username" class="form-control" placeholder="Username" th:placeholder="#{login.username}">
+    <label class="sr-only" th:text="#{login.phonenum}">Phonenum</label>
+    <input th:value="${phonenum}" type="text" name = "phonenum" class="form-control" placeholder="phonenum" th:placeholder="#{login.phonenum}">
 <!--        <span aria-hidden="true">&nbsp;</span>-->
     <!--  密码  -->
     <label class="sr-only" th:text="#{login.password}">Password</label>

@@ -24,7 +24,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a>房屋租赁管理系统欢迎您</a></li>
-                        <li><a th:text="用户 + ${session.loginUser}"></a></li>
+                        <li><a th:text="房主用户 + ${session.loginUser}"></a></li>
                         <li ><a th:href="@{/login}">退出</a></li>
                         <li ><a>&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     </ul>
@@ -102,7 +102,7 @@
 
         <li role="presentation" id="bar-4">
             <a href="#docCollapse4" class="nav-header collapsed text-muted" data-toggle="collapse" id="collapseParent4"
-               th:class="${textmutedUrl == 'owneraccount'||textmutedUrl == 'houseowner' ? 'nav-header collapse' : 'nav-header text-muted collapse'}">
+               th:class="${textmutedUrl == 'owneraccount'||textmutedUrl == 'realname' ? 'nav-header collapse' : 'nav-header text-muted collapse'}">
                 <!--span的作用是调用图标-->
                 <span class="glyphicon glyphicon-user"></span>
                 个人信息
@@ -113,7 +113,7 @@
                        th:class="${textmutedUrl == 'owneraccount' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">信息查看</a>
                 </li>
                 <li><a th:href="@{/owners}" class="text-center"
-                       th:class="${textmutedUrl == 'houseowner' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">实名认证</a>
+                       th:class="${textmutedUrl == 'realname' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">实名认证</a>
                 </li>
             </ul>
         </li>

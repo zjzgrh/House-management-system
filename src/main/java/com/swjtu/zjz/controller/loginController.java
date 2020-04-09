@@ -16,7 +16,7 @@ public class loginController {
     private loginServiceImpl loginService;
 
     @PostMapping(value = "/user/login")
-    public String login(@RequestParam("username") String username,
+    public String login(@RequestParam("phonenum") String username,
                         @RequestParam("password") String password,
                         @RequestParam("role") String role,
                         HttpSession session, Model model){

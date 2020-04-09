@@ -11,7 +11,7 @@
 
 <body>
 <!-- 顶部栏调用 -->
-<div th:replace="comnent/bars::topbar"></div>
+<div th:replace="comnent/rentbars::topbar"></div>
 <!-- 主体部分 -->
 <div class="container-fluid">
     <div class="row">
@@ -22,7 +22,10 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <div class="jumbotron d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                 <form class="form-horizontal" th:action="@{/tenantacc}" method="post">
+
                     <input type="hidden" name="_method" value="put" th:if="${tenantAccount != null}">
+                    <input type="hidden" name="_method" th:value="${tenantAccount != null}?${tenantAccount.tenant_id}">
+
                     <div class="form-group">
                         <label class="col-sm-4 control-label">手机号</label>
                         <div class="col-sm-4">
@@ -40,10 +43,29 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-sm-offset-4 col-sm-8">
-                            <button type="submit" class="btn btn-default">修改</button>
+                        <label class="col-sm-4 control-label">昵称</label>
+                        <div class="col-sm-4">
+                            <input th:name="nickname" th:class="form-control" th:id="nickname" th:placeholder="昵称"
+                                   th:value="${tenantAccount != null}?${tenantAccount.nickname}">
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">性别</label>
+                        <div class="col-sm-4">
+                            <input th:name="gender" th:class="form-control" th:id="tenant_gender" th:placeholder="性别"
+                                   th:value="${tenant_gender != null}?${tenantAccount.tenant_gender}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">年龄</label>
+                        <div class="col-sm-4">
+                            <input th:name="age" th:class="form-control" th:id="tenant_age" th:placeholder="年龄"
+                                   th:value="${tenantAccount != null}?${tenantAccount.tenant_age}">
+                        </div>
+                    </div>
+
 
                 </form>
             </div>

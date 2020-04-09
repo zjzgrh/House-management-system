@@ -1,9 +1,9 @@
 package com.swjtu.zjz.service;
 
-import com.swjtu.zjz.dao.ownerAccountMapper;
-import com.swjtu.zjz.dao.tenantAccountMapper;
-import com.swjtu.zjz.model.OwnerAccount;
-import com.swjtu.zjz.model.TenantAccount;
+import com.swjtu.zjz.dao.houseownerMapper;
+import com.swjtu.zjz.dao.housetenantMapper;
+import com.swjtu.zjz.model.HouseOwner;
+import com.swjtu.zjz.model.HouseTenant;
 import com.swjtu.zjz.service.impl.loginServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,65 +16,74 @@ import javax.servlet.http.HttpSession;
 public class LoginService implements loginServiceImpl {
 
     @Autowired
-    private ownerAccountMapper ownerAccountMapper;
+    private houseownerMapper houseownerMapper;
 
     @Autowired
-    private tenantAccountMapper tenantAccountMapper;
+    private housetenantMapper housetenantMapper;
 
     @Override
-    public String login(String username, String password, String role, HttpSession session, Model model) {
-        if(StringUtils.isEmpty(username) && !StringUtils.isEmpty(password)){
+    public String login(String phonenum, String password, String role, HttpSession session, Model model) {
+        //用户名为空
+        if(StringUtils.isEmpty(phonenum) && !StringUtils.isEmpty(password)){
             model.addAttribute("password",password);
             model.addAttribute("msg","用户名为空啊！！！");
             return "login";
             //密码为空
-        }else if(!StringUtils.isEmpty(username) && StringUtils.isEmpty(password)){
-            model.addAttribute("username",username);
+        }else if(!StringUtils.isEmpty(phonenum) && StringUtils.isEmpty(password)){
+            model.addAttribute("phonenum",phonenum);
             model.addAttribute("msg","密码为空啊！！！");
             return "login";
             //用户名和密码都为空
-        }else if(StringUtils.isEmpty(username) && StringUtils.isEmpty(password)){
+        }else if(StringUtils.isEmpty(phonenum) && StringUtils.isEmpty(password)){
             model.addAttribute("msg","用户名和密码为空啊！！！");
             return "login";
             //用户名和密码都不为空，判断用户名和密码是否在数据库
         }else {
             //判断角色
+            //房主登录判断
             if (role.equals("owner")) {
                 //查询数据库
-                OwnerAccount ownerAccount = ownerAccountMapper.select(username);
+                HouseOwner houseOwner = houseownerMapper.findPhonenum(phonenum);
+
                 //用户名不在数据库时，警告用户名不存在，提示用户去注册
-                if (ownerAccount == null) {
+                if (houseOwner == null) {
+                    model.addAttribute("phonenum", phonenum);
                     model.addAttribute("password", password);
                     model.addAttribute("msg", "用户名不存在，请检查用户名或进行注册！");
                     return "login";
                 }
-                //用户名存在数据库，判断密码和角色是否正确，正确就进入主页
-                if (username.equals(ownerAccount.getPhonenum()) && password.equals(ownerAccount.getPassword())) {
-                    session.setAttribute("loginUser", username);
+                //用户名存在数据库，判断密码是否正确，正确就进入主页
+                if ( password.equals(houseOwner.getPassword())) {
+                    session.setAttribute("loginUser", phonenum);
+                    session.setAttribute("userId", houseownerMapper.getHouseownerId(phonenum));
                     return "index";
-                    //若密码或角色不对，进行相应的提示
+                //若密码不对，进行相应的提示
                 } else {
-                    model.addAttribute("username", username);
+                    model.addAttribute("phonenum", phonenum);
                     model.addAttribute("msg", "密码错误，请检查密码并重新输入");
                     return "login";
                 }
+                //房客登录判断
             } else {
                 //查询数据库
-                TenantAccount tenantAccount = tenantAccountMapper.select(username);
+                HouseTenant houseTenant = housetenantMapper.findPhonenum(phonenum);
+
                 //用户名不在数据库时，警告用户名不存在，提示用户去注册
-                if (tenantAccount == null) {
+                if (houseTenant == null) {
+                    model.addAttribute("phonenum", phonenum);
                     model.addAttribute("password", password);
                     model.addAttribute("msg", "用户名不存在，请检查用户名或进行注册！");
                     return "login";
                 }
-                //用户名存在数据库，判断密码和角色是否正确，正确就进入主页
-                if (username.equals(tenantAccount.getPhonenum()) && password.equals(tenantAccount.getPassword())) {
+                //用户名存在数据库，判断密码是否正确，正确就进入主页
+                if (password.equals(houseTenant.getPassword())) {
                     //用户名写入session
-                    session.setAttribute("loginUser", username);
+                    session.setAttribute("loginUser", phonenum);
+                    session.setAttribute("userId", housetenantMapper.getHousetenantId(phonenum));
                     return "rent/index";
-                    //若密码或角色不对，进行相应的提示
+                //若密码不对，进行相应的提示
                 } else {
-                    model.addAttribute("username", username);
+                    model.addAttribute("phonenum", phonenum);
                     model.addAttribute("msg", "密码错误，请检查密码并重新输入");
                     return "login";
                 }

@@ -6,5 +6,5 @@ import javax.servlet.http.HttpSession;
 
 public interface loginServiceImpl {
 
-    String login(String username, String password, String role, HttpSession session, Model model);
+    String login(String phonenum, String password, String role, HttpSession session, Model model);
 }

@@ -10,15 +10,14 @@ public class House {
     private String house_type;
     private Integer house_floor;
     private String house_decoration; //装修情况
-    private String owner_identitynum;
     private char rental_situation; // 租赁情况
-    private char house_apply; // 租赁情况
     private Integer rent_time;
+    private Integer owner_id;
 
     public House(){}
 
     public House(String house_address, Integer house_monthlyrent, String house_detail, Integer house_area, String house_use,
-                 String house_type, Integer house_floor, String house_decoration, String owner_identitynum) {
+                 String house_type, Integer house_floor, String house_decoration,Integer rent_time) {
         this.house_address = house_address;
         this.house_monthlyrent = house_monthlyrent;
         this.house_detail = house_detail;
@@ -27,10 +26,8 @@ public class House {
         this.house_type = house_type;
         this.house_floor = house_floor;
         this.house_decoration = house_decoration;
-        this.owner_identitynum = owner_identitynum;
+        this.rent_time = rent_time;
     }
-
-
 
     public Integer getHouse_id() {
         return house_id;
@@ -104,14 +101,6 @@ public class House {
         this.house_decoration = house_decoration;
     }
 
-    public String getOwner_identitynum() {
-        return owner_identitynum;
-    }
-
-    public void setOwner_identitynum(String owner_identitynum) {
-        this.owner_identitynum = owner_identitynum;
-    }
-
     public char getRental_situation() {
         return rental_situation;
     }
@@ -120,20 +109,20 @@ public class House {
         this.rental_situation = rental_situation;
     }
 
-    public char getHouse_apply() {
-        return house_apply;
-    }
-
-    public void setHouse_apply(char house_apply) {
-        this.house_apply = house_apply;
-    }
-
     public Integer getRent_time() {
         return rent_time;
     }
 
     public void setRent_time(Integer rent_time) {
         this.rent_time = rent_time;
+    }
+
+    public Integer getOwner_id() {
+        return owner_id;
+    }
+
+    public void setOwner_id(Integer owner_id) {
+        this.owner_id = owner_id;
     }
 
     @Override
@@ -148,10 +137,9 @@ public class House {
                 ", house_type='" + house_type + '\'' +
                 ", house_floor=" + house_floor +
                 ", house_decoration='" + house_decoration + '\'' +
-                ", owner_identitynum='" + owner_identitynum + '\'' +
                 ", rental_situation=" + rental_situation +
-                ", house_apply=" + house_apply +
                 ", rent_time=" + rent_time +
+                ", owner_id=" + owner_id +
                 '}';
     }
 }

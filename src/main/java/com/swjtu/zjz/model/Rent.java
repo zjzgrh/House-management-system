@@ -1,42 +1,45 @@
 package com.swjtu.zjz.model;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 public class Rent {
-    private String owner_identitynum;
-    private String tenant_identitynum;
+    private Integer owner_id;
+    private Integer tenant_id;
     private Integer house_id;
-    private Date rent_startdate;
+    private Date rent_starttime;
     private Integer rent_time;
     private Integer need_rent;
     private Integer actual_rent;
+    private char rent_status;
 
     public Rent(){}
 
-    public Rent(String owner_identitynum, String tenant_identitynum, Integer house_id, Date rent_startdate, Integer rent_time, Integer need_rent, Integer actual_rent) {
-        this.owner_identitynum = owner_identitynum;
-        this.tenant_identitynum = tenant_identitynum;
+    public Rent(Integer owner_id, Integer tenant_id, Integer house_id, Date rent_starttime, Integer rent_time, Integer need_rent, Integer actual_rent, char rent_status) {
+        this.owner_id = owner_id;
+        this.tenant_id = tenant_id;
         this.house_id = house_id;
-        this.rent_startdate = rent_startdate;
+        this.rent_starttime = rent_starttime;
         this.rent_time = rent_time;
         this.need_rent = need_rent;
         this.actual_rent = actual_rent;
+        this.rent_status = rent_status;
     }
 
-    public String getOwner_identitynum() {
-        return owner_identitynum;
+    public Integer getOwner_id() {
+        return owner_id;
     }
 
-    public void setOwner_identitynum(String owner_identitynum) {
-        this.owner_identitynum = owner_identitynum;
+    public void setOwner_id(Integer owner_id) {
+        this.owner_id = owner_id;
     }
 
-    public String getTenant_identitynum() {
-        return tenant_identitynum;
+    public Integer getTenant_id() {
+        return tenant_id;
     }
 
-    public void setTenant_identitynum(String tenant_identitynum) {
-        this.tenant_identitynum = tenant_identitynum;
+    public void setTenant_id(Integer tenant_id) {
+        this.tenant_id = tenant_id;
     }
 
     public Integer getHouse_id() {
@@ -47,12 +50,12 @@ public class Rent {
         this.house_id = house_id;
     }
 
-    public Date getRent_startdate() {
-        return rent_startdate;
+    public Date getRent_starttime() {
+        return rent_starttime;
     }
 
-    public void setRent_startdate(Date rent_startdate) {
-        this.rent_startdate = rent_startdate;
+    public void setRent_starttime(Date rent_starttime) {
+        this.rent_starttime = rent_starttime;
     }
 
     public Integer getRent_time() {
@@ -79,16 +82,25 @@ public class Rent {
         this.actual_rent = actual_rent;
     }
 
+    public char getRent_status() {
+        return rent_status;
+    }
+
+    public void setRent_status(char rent_status) {
+        this.rent_status = rent_status;
+    }
+
     @Override
     public String toString() {
         return "Rent{" +
-                "owner_identitynum='" + owner_identitynum + '\'' +
-                ", tenant_identitynum='" + tenant_identitynum + '\'' +
+                "owner_id=" + owner_id +
+                ", tenant_id=" + tenant_id +
                 ", house_id=" + house_id +
-                ", rent_startdate=" + rent_startdate +
+                ", rent_starttime=" + rent_starttime +
                 ", rent_time=" + rent_time +
                 ", need_rent=" + need_rent +
                 ", actual_rent=" + actual_rent +
+                ", rent_status=" + rent_status +
                 '}';
     }
 }

@@ -21,25 +21,49 @@
         <!--jumbotron:将div整个模块的背景变为灰色-->
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <div class="jumbotron d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                <form class="form-horizontal" th:action="@{/acc} " method="get">
+                <form class="form-horizontal" >
+<!--                    th:action="@{/acc/} + ${houseOwner.owner_id} " method="get"-->
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label">手机号</label>
                         <div class="col-sm-4">
-                            <p class="form-control-static" th:text="${ownerAccount.getPhonenum()}"></p>
+                            <p class="form-control-static" th:text="${houseOwner.phonenum}" th:if="${houseOwner.phonenum} != null"></p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label">密码</label>
                         <div class="col-sm-4">
-                            <p class="form-control-static" th:text="${ownerAccount.password}"></p>
+                            <p class="form-control-static" th:text="${houseOwner.password}" th:if="${houseOwner.password} != null"></p>
                         </div>
                     </div>
 
                     <div class="form-group">
+                        <label class="col-sm-4 control-label">昵称</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static" th:text="${houseOwner.nickname}" th:if="${houseOwner.nickname} != null"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">性别</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static" th:text="${houseOwner.owner_gender} == '1' ? '男':'女'" th:if="${houseOwner.owner_gender} != null"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">出生年月</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static" th:text="${houseOwner.owner_age}" th:if="${houseOwner.owner_age} != null"></p>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
                         <div class="col-sm-offset-4 col-sm-8">
-                            <button type="submit" class="btn btn-default">修改</button>
+<!--                            <button type="submit" class="btn btn-default">修改</button>-->
+                            <a th:href="@{/acc/} + ${houseOwner.owner_id}" class="btn btn-default">修改</a>
                         </div>
                     </div>
 

@@ -1,7 +1,7 @@
+/*
 package com.swjtu.zjz.controller;
 
 import com.swjtu.zjz.dao.houseMapper;
-import com.swjtu.zjz.dao.ownerAccountMapper;
 import com.swjtu.zjz.model.House;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,3 +46,4 @@ public class renthouseController {
         return "renthouse/applyhouselist";
     }
 }
+*/

@@ -11,7 +11,7 @@
 
 <body>
 <!-- 顶部栏调用 -->
-<div th:replace="comnent/bars::topbar"></div>
+<div th:replace="comnent/rentbars::topbar"></div>
 <!-- 主体部分 -->
 <div class="container-fluid">
     <div class="row">
@@ -26,14 +26,35 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label">手机号</label>
                         <div class="col-sm-4">
-                            <p class="form-control-static" th:text="${tenantAccount.phonenum}"></p>
+                            <p class="form-control-static" th:text="${houseTenant.phonenum}" th:if="${houseTenant.phonenum} != null"></p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label">密码</label>
                         <div class="col-sm-4">
-                            <p class="form-control-static" th:text="${tenantAccount.password}"></p>
+                            <p class="form-control-static" th:text="${houseTenant.password}" th:if="${houseTenant.password} != null"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">昵称</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static" th:text="${houseTenant}" th:if="${houseTenant.nickname} != null"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">性别</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static" th:text="${houseTenant.tenant_gender} == '1' ? '男':'女'" th:if="${houseTenant.tenant_gender} != null"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">出生年月</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static" th:text="${houseTenant.tenant_age}" th:if="${houseTenant.tenant_age} != null"></p>
                         </div>
                     </div>
 

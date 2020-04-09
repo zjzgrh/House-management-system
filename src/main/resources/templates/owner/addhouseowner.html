@@ -24,6 +24,18 @@
                 <form class="form-horizontal" th:action="@{/owner}" method="post">
 <!--                    <input type="hidden" name="_method" value="put" >-->
 <!--                    <input type="hidden" name="id" >-->
+
+
+                    <div class="form-group">
+                        <label class="col-sm-7 control-label">
+                            <span  style="color:red" th:text="${realname}" if="${not #strings.isEmpty(realname)}"></span>
+                        </label>
+                        <div class="col-sm-4">
+                            <input type="hidden">
+                        </div>
+                    </div>
+<!--                    <span class="col-sm-4" style="color:red" th:text="${realname}" if="${not #strings.isEmpty(realname)}"></span>-->
+
                     <!-- 房主身份证号  -->
                     <div class="form-group">
                         <label class="col-sm-4 control-label">房主身份证号</label>
@@ -33,25 +45,12 @@
                     </div>
                     <!-- 姓名  -->
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">姓名</label>
+                        <label class="col-sm-4 control-label">真实姓名</label>
                         <div class="col-sm-4">
                             <input th:name="name" th:class="form-control" th:id="name" th:placeholder="姓名">
                         </div>
                     </div>
-                    <!-- 性别  -->
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">性别</label>
-                        <div class="col-sm-4">
-                            <input th:name="sex" th:class="form-control" th:id="sex" th:placeholder="性别" >
-                        </div>
-                    </div>
-                    <!-- 年龄  -->
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">年龄</label>
-                        <div class="col-sm-4">
-                            <input th:name="age" th:class="form-control" th:id="age" th:placeholder="年龄">
-                        </div>
-                    </div>
+
 
                     <!-- 添加  -->
                     <div class="form-group">

@@ -16,7 +16,7 @@
 <div class="container-fluid">
     <div class="row">
         <!--侧边栏调用-->
-        <div th:replace="comnent/bars::sidebar(textmutedUrl = 'owneraccount')"></div>
+        <div th:replace="comnent/bars::sidebar(textmutedUrl = 'realname')"></div>
         <!--右侧主体部分-->
         <!--jumbotron:将div整个模块的背景变为灰色-->
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
@@ -34,20 +34,6 @@
                         <label class="col-sm-4 control-label">姓名</label>
                         <div class="col-sm-4">
                             <p class="form-control-static" th:text="${houseOwner.owner_name}"></p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">性别</label>
-                        <div class="col-sm-4">
-                            <p class="form-control-static" th:text="${houseOwner.owner_sex}"></p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">出生日期</label>
-                        <div class="col-sm-4">
-                            <p class="form-control-static" th:text="${houseOwner.owner_age}"></p>
                         </div>
                     </div>
 

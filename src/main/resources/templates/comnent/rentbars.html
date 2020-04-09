@@ -24,7 +24,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a>房屋租赁管理系统欢迎您</a></li>
-                        <li><a th:text="用户 + ${session.loginUser}"></a></li>
+                        <li><a th:text="租客用户 + ${session.loginUser}"></a></li>
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -64,7 +64,7 @@
                        th:class="${textmutedUrl == 'renthouselist' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">房源查看</a>
                 </li>
                 <li><a th:href="@{/applyhouselist}" class="text-center"
-                       th:class="${textmutedUrl == 'applyhouselist' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">申请列表</a>
+                       th:class="${textmutedUrl == 'applyhouselist' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">租房申请</a>
                 </li>
             </ul>
         </li>
@@ -79,9 +79,10 @@
                 <span class="pull-right glyphicon glyphicon-chevron-down"></span>
             </a>
             <ul id="docCollapse2" class="nav nav-list collapse in">
-                <li><a href="#" class="text-center">缴纳情况</a></li>
-                <!--<li><a href="#" class="text-center">租金统计</a></li>-->
+                <li><a href="#" class="text-center">租赁房屋</a></li>
+                <li><a href="#" class="text-center">月租缴纳</a></li>
             </ul>
+
         </li>
 
         <li role="presentation" id="bar-3">
