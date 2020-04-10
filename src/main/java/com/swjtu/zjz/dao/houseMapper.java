@@ -46,8 +46,8 @@ public interface houseMapper {
     @Select("select house_apply from house where house_id = #{house_id}")
     char getHouseapply(Integer house_id);
 
-    @Update("update house set house_apply = #{house_apply} where house_id = #{house_id}")
-    void updateHouseapply(char house_apply,Integer house_id);
+    @Update("update house set apply_situation = #{apply_situation} where house_id = #{house_id}")
+    void updateHouseapply(char apply_situation,Integer house_id);
 
     //查找用户申请的房屋信息
     @Select("select * from house where owner_identitynum = #{owner_identitynum} and house_apply = '1'")

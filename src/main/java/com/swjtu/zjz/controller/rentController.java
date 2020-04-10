@@ -1,4 +1,3 @@
-/*
 package com.swjtu.zjz.controller;
 
 import com.swjtu.zjz.dao.houseMapper;
@@ -16,20 +15,16 @@ import java.util.List;
 public class rentController {
 
     @Autowired
-    private ownerAccountMapper ownerAccountMapper;
-
-    @Autowired
     private houseMapper houseMapper;
 
     @GetMapping("/houseapply")
     public String houseapplylist(HttpSession session, Model model){
-        OwnerAccount houseOwner = ownerAccountMapper.select((String) session.getAttribute("loginUser"));
-        System.out.println(" 看看查出了什么东西，有没有身份证号 ：" + houseOwner);
-        List<House> houseList = houseMapper.getApplyhouseList(houseOwner.getOwner_identitynum());
-        System.out.println("看看这个列表是什么东西：" + houseList);
-        model.addAttribute("houselists", houseList);
+        //OwnerAccount houseOwner = ownerAccountMapper.select((String) session.getAttribute("loginUser"));
+        //System.out.println(" 看看查出了什么东西，有没有身份证号 ：" + houseOwner);
+        //List<House> houseList = houseMapper.getApplyhouseList(houseOwner.getOwner_identitynum());
+        //System.out.println("看看这个列表是什么东西：" + houseList);
+        //model.addAttribute("houselists", houseList);
         return "rentmanage/houseapplylist";
     }
 
 }
-*/

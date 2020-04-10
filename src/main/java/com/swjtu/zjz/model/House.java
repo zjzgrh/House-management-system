@@ -13,6 +13,7 @@ public class House {
     private char rental_situation; // 租赁情况
     private Integer rent_time;
     private Integer owner_id;
+    private char apply_situation;
 
     public House(){}
 
@@ -125,6 +126,14 @@ public class House {
         this.owner_id = owner_id;
     }
 
+    public char getApply_situation() {
+        return apply_situation;
+    }
+
+    public void setApply_situation(char apply_situation) {
+        this.apply_situation = apply_situation;
+    }
+
     @Override
     public String toString() {
         return "House{" +
@@ -140,6 +149,7 @@ public class House {
                 ", rental_situation=" + rental_situation +
                 ", rent_time=" + rent_time +
                 ", owner_id=" + owner_id +
+                ", apply_situation=" + apply_situation +
                 '}';
     }
 }

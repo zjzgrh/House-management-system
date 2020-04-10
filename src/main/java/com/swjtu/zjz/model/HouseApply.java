@@ -12,11 +12,10 @@ public class HouseApply {
 
     HouseApply(){}
 
-    public HouseApply(Integer tenant_id, Integer house_id, Date apply_starttime, String apply_remark) {
+    public HouseApply(Integer tenant_id, Integer house_id, Date apply_starttime) {
         this.tenant_id = tenant_id;
         this.house_id = house_id;
         this.apply_starttime = apply_starttime;
-        this.apply_remark = apply_remark;
     }
 
     public Integer getTenant_id() {
