@@ -30,10 +30,10 @@ public interface housetenantMapper {
     @Select("select * from house_tenant where tenant_id = #{tenant_id}")
     HouseTenant findTenantid(Integer tenant_id);
 
-    @Update("update house_tenant set phonenum = #{newphonenum},password = #{newpassword},nickname = #{nickname}," +
+    @Update("update house_tenant set phonenum = #{phonenum},password = #{password},nickname = #{nickname}," +
             "tenant_gender = #{tenant_gender},tenant_age = #{tenant_age} where tenant_id = #{tenant_id}")
     void updateHousetenant(HouseTenant houseTenant);
 
-    @Update("update house_tenant set owner_identitynum = #{identitynum},tenant_name = #{name} where tenant_id = #{tenant_id}")
+    @Update("update house_tenant set tenant_identitynum = #{identitynum},tenant_name = #{name} where tenant_id = #{tenant_id}")
     void updateHousetenantIdentitynum(String identitynum, String name, Integer tenant_id);
 }

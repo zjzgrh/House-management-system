@@ -1,14 +1,12 @@
 package com.swjtu.zjz.controller;
 
 import com.swjtu.zjz.dao.housetenantMapper;
+import com.swjtu.zjz.model.HouseOwner;
 import com.swjtu.zjz.model.HouseTenant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Date;
@@ -37,20 +35,24 @@ public class housetenantController {
         return "acc/showtenantaccount";
     }
 
-    @GetMapping("/tenantacc")
-    private String toUpdateOwnerAccount(Model model, HttpSession session){
+    @GetMapping("/tenantacc/{id}")
+    private String toUpdateOwnerAccount(@PathVariable("id") Integer id, Model model, HttpSession session){
 
-        HouseTenant houseTenant = housetenantMapper.findTenantid((Integer) session.getAttribute("userId"));
-        model.addAttribute("houseTenant", houseTenant);
+        HouseTenant houseTenant = housetenantMapper.findTenantid((id));
+        System.out.println("待修改的数据" + houseTenant);
+        model.addAttribute("houseTenant",houseTenant);
+
         return "acc/updatetenantaccount";
     }
 
     @PutMapping("/tenantacc")
     private String updateOwnerAccount(@RequestParam("phonenum") String phonenum, @RequestParam("password") String password,
                                       @RequestParam("nickname") String nickname, @RequestParam("gender") char gender,
-                                      @RequestParam("age") Date age,HttpSession session){
+                                      @RequestParam("age") Date age,@RequestParam("id") Integer id,
+                                      HttpSession session){
 
         HouseTenant houseTenant = new HouseTenant(phonenum, password, nickname, gender, age);
+        houseTenant.setTenant_id(id);
         housetenantMapper.updateHousetenant(houseTenant);
         //把更新后的用户重新写入到session
         session.setAttribute("loginUser",phonenum);
@@ -76,8 +78,10 @@ public class housetenantController {
                                   HttpSession session){
 
         Integer tenant_id = (Integer) session.getAttribute("userId");
+
         housetenantMapper.updateHousetenantIdentitynum(identitynum,name,tenant_id);
         System.out.println("添加了一条实名认证" + housetenantMapper.findTenantid(tenant_id));
+
         return "redirect:/tenants";
     }
 
@@ -87,7 +91,7 @@ public class housetenantController {
         HouseTenant houseTenant = housetenantMapper.findTenantid((Integer) session.getAttribute("userId"));
 
         System.out.println("看一下实名认证是不是空的！" + houseTenant);
-        model.addAttribute("houseOwner", houseTenant);
+        model.addAttribute("houseTenant", houseTenant);
 
         return "tenant/showhousetenant";
     }

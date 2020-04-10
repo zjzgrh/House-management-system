@@ -23,14 +23,14 @@
             <div class="jumbotron d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                 <form class="form-horizontal" th:action="@{/tenantacc}" method="post">
 
-                    <input type="hidden" name="_method" value="put" th:if="${tenantAccount != null}">
-                    <input type="hidden" name="_method" th:value="${tenantAccount != null}?${tenantAccount.tenant_id}">
+                    <input type="hidden" name="_method" value="put" th:if="${houseTenant != null}">
+                    <input type="hidden" name="id" th:value="${houseTenant.tenant_id}" th:if="${houseTenant.tenant_id} != null">
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label">手机号</label>
                         <div class="col-sm-4">
                             <input th:name="phonenum" th:class="form-control" th:id="phonenum" th:placeholder="手机号"
-                                   th:value="${tenantAccount != null}?${tenantAccount.phonenum}">
+                                   th:value="${houseTenant.phonenum != null}?${houseTenant.phonenum}">
                         </div>
                     </div>
 
@@ -38,7 +38,7 @@
                         <label class="col-sm-4 control-label">密码</label>
                         <div class="col-sm-4">
                             <input th:name="password" th:class="form-control" th:id="password" th:placeholder="密码"
-                                   th:value="${tenantAccount != null}?${tenantAccount.password}">
+                                   th:value="${houseTenant.password != null}?${houseTenant.password}">
                         </div>
                     </div>
 
@@ -46,7 +46,7 @@
                         <label class="col-sm-4 control-label">昵称</label>
                         <div class="col-sm-4">
                             <input th:name="nickname" th:class="form-control" th:id="nickname" th:placeholder="昵称"
-                                   th:value="${tenantAccount != null}?${tenantAccount.nickname}">
+                                   th:value="${houseTenant.nickname != null}?${houseTenant.nickname}">
                         </div>
                     </div>
 
@@ -54,7 +54,7 @@
                         <label class="col-sm-4 control-label">性别</label>
                         <div class="col-sm-4">
                             <input th:name="gender" th:class="form-control" th:id="tenant_gender" th:placeholder="性别"
-                                   th:value="${tenant_gender != null}?${tenantAccount.tenant_gender}">
+                                   th:value="${houseTenant.tenant_gender != null}?${houseTenant.tenant_gender}">
                         </div>
                     </div>
 
@@ -62,10 +62,15 @@
                         <label class="col-sm-4 control-label">年龄</label>
                         <div class="col-sm-4">
                             <input th:name="age" th:class="form-control" th:id="tenant_age" th:placeholder="年龄"
-                                   th:value="${tenantAccount != null}?${tenantAccount.tenant_age}">
+                                   th:value="${houseTenant.tenant_age != null}?${houseTenant.tenant_age}">
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <button type="submit" class="btn btn-default">修改</button>
+                        </div>
+                    </div>
 
                 </form>
             </div>
