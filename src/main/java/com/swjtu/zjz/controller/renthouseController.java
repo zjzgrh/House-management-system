@@ -60,11 +60,11 @@ public class renthouseController {
         return "redirect:/applyhouselist";
     }
 
-    //点击租房申请时，查询查询申请表中的当前房客号对应的房子列表，并跳转到房子申请表界面
+    //首页点击租房申请时，查询查询申请表中的当前房客号对应的房子列表，并跳转到房子申请表界面
     @GetMapping("/applyhouselist")
     public String showApplyhouseList(Model model,HttpSession session){
 //        List<House> houselists = houseapplyMapper.getApplyHouselists((Integer) session.getAttribute("userId"));
-        List<House> houselists = joinMapper.getApplyHouse((Integer) session.getAttribute("userId"));
+        List<House> houselists = joinMapper.getTenantApplyHouse((Integer) session.getAttribute("userId"));
         System.out.println(houselists);
         model.addAttribute("houselists", houselists);
         return "renthouse/applyhouselist";
