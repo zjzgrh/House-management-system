@@ -15,15 +15,11 @@ public class Rent {
 
     public Rent(){}
 
-    public Rent(Integer owner_id, Integer tenant_id, Integer house_id, Date rent_starttime, Integer rent_time, Integer need_rent, Integer actual_rent, char rent_status) {
+    public Rent(Integer owner_id, Integer tenant_id, Integer house_id, Date rent_starttime) {
         this.owner_id = owner_id;
         this.tenant_id = tenant_id;
         this.house_id = house_id;
         this.rent_starttime = rent_starttime;
-        this.rent_time = rent_time;
-        this.need_rent = need_rent;
-        this.actual_rent = actual_rent;
-        this.rent_status = rent_status;
     }
 
     public Integer getOwner_id() {

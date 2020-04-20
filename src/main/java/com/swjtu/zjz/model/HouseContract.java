@@ -6,7 +6,7 @@ public class HouseContract {
     private Date contract_startdate;
     private Date contract_enddate;
     private String contract_detail;
-    private Integer owener_id;
+    private Integer owner_id;
     private Integer tenant_id;
     private Integer house_id;
 
@@ -16,7 +16,7 @@ public class HouseContract {
         this.contract_startdate = contract_startdate;
         this.contract_enddate = contract_enddate;
         this.contract_detail = contract_detail;
-        this.owener_id = owener_id;
+        this.owner_id = owener_id;
         this.tenant_id = tenant_id;
         this.house_id = house_id;
     }
@@ -45,12 +45,12 @@ public class HouseContract {
         this.contract_detail = contract_detail;
     }
 
-    public Integer getOwener_id() {
-        return owener_id;
+    public Integer getOwner_id() {
+        return owner_id;
     }
 
-    public void setOwener_id(Integer owener_id) {
-        this.owener_id = owener_id;
+    public void setOwner_id(Integer owner_id) {
+        this.owner_id = owner_id;
     }
 
     public Integer getTenant_id() {
@@ -75,7 +75,7 @@ public class HouseContract {
                 "contract_startdate=" + contract_startdate +
                 ", contract_enddate=" + contract_enddate +
                 ", contract_detail='" + contract_detail + '\'' +
-                ", owener_id=" + owener_id +
+                ", owner_id=" + owner_id +
                 ", tenant_id=" + tenant_id +
                 ", house_id=" + house_id +
                 '}';

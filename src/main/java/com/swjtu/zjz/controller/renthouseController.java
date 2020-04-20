@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
+import java.net.Inet4Address;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -27,14 +28,17 @@ public class renthouseController {
     private houseMapper houseMapper;
 
     @Autowired
-    private houseownerMapper houseownerMapper;
-
-    @Autowired
     private houseapplyMapper houseapplyMapper;
 
     @GetMapping("/renthouselist")
-    public String showRenthouseList(Model model){
+    public String showRenthouseList(Model model,HttpSession session){
         List<House> houselists = houseMapper.findRenthouseList();
+        for (House houselist : houselists){
+            if(houseapplyMapper.judgeApplyStatus(houselist.getHouse_id(),(Integer) session.getAttribute("userId")) == null)
+                houselist.setApply_situation('0');
+            else
+                houselist.setApply_situation('1');
+        }
         model.addAttribute("houselists", houselists);
         System.out.println(houselists);
         return "renthouse/renthouselist";
@@ -43,7 +47,6 @@ public class renthouseController {
     //在房源界面，点击申请按钮，把房子表中申请状态置为1，然后将该申请内容写入申请表。
     @GetMapping("/apply/{id}")
     public String applyhouse(@PathVariable("id") Integer id, HttpSession session,Model model){
-        houseMapper.updateHouseapply('1',id);
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         HouseApply houseApply = new HouseApply((Integer) session.getAttribute("userId"), id, date);
@@ -55,7 +58,6 @@ public class renthouseController {
     @GetMapping("/cancelapply/{id}")
     public String cancelapply(@PathVariable("id") Integer id, Model model){
 
-        houseMapper.updateHouseapply('0',id);
         houseapplyMapper.deleteApplyHouseId(id);
         return "redirect:/applyhouselist";
     }
@@ -69,4 +71,6 @@ public class renthouseController {
         model.addAttribute("houselists", houselists);
         return "renthouse/applyhouselist";
     }
+
+
 }

@@ -81,14 +81,15 @@
                        th:class="${textmutedUrl == 'houseapplylist' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">租房申请</a>
                 </li>
                 <li>
-                    <a href="#" class="text-center"
-                       th:class="${textmutedUrl == 'houseapplylist' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">租金查看</a>
+                    <a th:href="@{/rentmanage}" class="text-center"
+                       th:class="${textmutedUrl == 'rentmanagelist' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">租金查看</a>
                 </li>
             </ul>
         </li>
 
         <li role="presentation" id="bar-3">
-            <a href="#docCollapse3" class="nav-header collapsed text-muted" data-toggle="collapse" id="collapseParent3">
+            <a href="#docCollapse3" class="nav-header collapsed text-muted" data-toggle="collapse" id="collapseParent3"
+               th:class="${textmutedUrl == 'owneraccount'||textmutedUrl == 'realname' ? 'nav-header collapse' : 'nav-header text-muted collapse'}">
                 <!--span的作用是调用图标-->
                 <span class="glyphicon glyphicon-list-alt"></span>
                 合同信息

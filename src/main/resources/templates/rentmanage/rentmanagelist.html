@@ -1,3 +1,4 @@
+<!--这里是房主同意租赁申请后，进入租金管理界面-->
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
@@ -20,7 +21,7 @@
 <div class="container-fluid">
     <div class="row">
         <!--侧边栏调用-->
-        <div th:replace="comnent/bars::sidebar(textmutedUrl = 'houseapplylist')"></div>
+        <div th:replace="comnent/bars::sidebar(textmutedUrl = 'rentmanagelist')"></div>
         <!--右侧主体部分-->
         <!--jumbotron:将div整个模块的背景变为灰色-->
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
@@ -30,37 +31,21 @@
                     <table class="table table-striped table-sm">
                         <thead>
                         <tr>
-                            <th>地址</th>
-                            <th>月租</th>
-                            <th>面积</th>
-                            <th>用途</th>
-                            <th>户型</th>
-                            <th>楼层</th>
-                            <th>装修情况</th>
-                            <th>描述</th>
-                            <th>申请人</th>
-                            <th>申请时间</th>
+                            <th>房主</th>
+                            <th>房客</th>
+                            <th>房子</th>
+                            <th>租赁时间</th>
                             <th>操作</th>
-
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="list:${applylists}">
-                            <td th:text="${list.house_address}"></td>
-                            <td th:text="${list.house_monthlyrent}"></td>
-                            <td th:text="${list.house_area}"></td>
-                            <td th:text="${list.house_use}"></td>
-                            <td th:text="${list.house_type}"></td>
-                            <td th:text="${list.house_floor}"></td>
-                            <td th:text="${list.house_decoration}"></td>
-                            <td th:text="${list.house_detail}"></td>
-                            <td th:text="${list.tenant_name}"></td>
-                            <td th:text="${list.apply_starttime}"></td>
-
+                        <tr th:each="list:${rentlists}">
+                            <td th:text="${list.owner_id}"></td>
+                            <td th:text="${list.tenant_id}"></td>
+                            <td th:text="${list.house_id}"></td>
+                            <td th:text="${list.rent_starttime}"></td>
                             <td>
-<!--                                <input type="hidden" name="tenant_id" th:value="${list.tenant_id}">-->
-                                <a class="btn btn-sm btn-primary" th:href="@{/confirmrent(house_id = ${list.house_id},tenant_id = ${list.tenant_id})}" th:text="${list.rental_situation} == '0' ? '同意':'已同意'"></a>
-                                <a class="btn btn-sm btn-primary" th:href="@{/refuserent/} + ${list.house_id}" th:text="拒绝"></a>
+                                <a class="btn btn-sm btn-primary">催缴</a>
                             </td>
                         </tr>
                         </tbody>
