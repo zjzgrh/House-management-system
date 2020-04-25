@@ -68,7 +68,8 @@
 
         <li role="presentation" id="bar-2">
 
-            <a href="#docCollapse2" class="nav-header collapsed text-muted" data-toggle="collapse" id="collapseParent2">
+            <a href="#docCollapse2" class="nav-header collapsed text-muted" data-toggle="collapse" id="collapseParent2"
+               th:class="${textmutedUrl == 'houseapplylist' || textmutedUrl == 'rentmanagelist' ? 'nav-header collapse' : 'nav-header text-muted collapse'}">
                 <!--span的作用是调用图标-->
                 <span class="glyphicon glyphicon-jpy"></span>
                 租赁信息
@@ -96,8 +97,10 @@
                 <span class="pull-right glyphicon glyphicon-chevron-down"></span>
             </a>
             <ul id="docCollapse3" class="nav nav-list collapse in">
-                <li><a href="#" class="text-center">合同录入</a></li>
-                <li><a href="#" class="text-center">合同查看</a></li>
+                <li><a th:href="@{/showhousecontract}" class="text-center"
+                       th:class="${textmutedUrl == 'showhousecontrat' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">合同查看</a></li>
+                <li><a th:href="@{/updatehousecontrat}" class="text-center"
+                       th:class="${textmutedUrl == 'updatehousecontrat' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">合同修改</a></li>
             </ul>
         </li>
 

@@ -1,6 +1,6 @@
 package com.swjtu.zjz.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class HouseContract {
     private Date contract_startdate;
@@ -12,10 +12,8 @@ public class HouseContract {
 
     public HouseContract(){}
 
-    public HouseContract(Date contract_startdate, Date contract_enddate, String contract_detail, Integer owener_id, Integer tenant_id, Integer house_id) {
+    public HouseContract(Integer owener_id, Integer tenant_id, Integer house_id,Date contract_startdate) {
         this.contract_startdate = contract_startdate;
-        this.contract_enddate = contract_enddate;
-        this.contract_detail = contract_detail;
         this.owner_id = owener_id;
         this.tenant_id = tenant_id;
         this.house_id = house_id;
