@@ -72,4 +72,12 @@ public class rentController {
         return "rentmanage/rentmanagelist";
     }
 
+    //在房客界面，点击房屋租赁时，显示该房客租赁的所有的房屋信息
+    @GetMapping("/rentlist")
+    public String showRentList(HttpSession session, Model model){
+        List<TableAll> rentlists = joinMapper.getTenantRent((Integer) session.getAttribute("userId"));
+        model.addAttribute("rentlists", rentlists);
+        return "renthouse/rentlist";
+    }
+
 }

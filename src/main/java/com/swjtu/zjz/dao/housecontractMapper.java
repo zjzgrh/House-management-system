@@ -5,6 +5,7 @@ import com.swjtu.zjz.model.Rent;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -17,4 +18,5 @@ public interface housecontractMapper {
 
     @Select("select * from house_contract where owner_id = #{owner_id}")
     List<HouseContract> getHouseContract(Integer owner_id);
+
 }

@@ -22,7 +22,7 @@ public class housecontratController {
 
     @Autowired
     private joinMapper joinMapper;
-
+    //房主界面，点击合同查看展示该房主的合同信息
     @GetMapping("/showhousecontract")
     public String housecontratlist(HttpSession session, Model model) {
         List<TableAll> contractlists = joinMapper.getOwnerContract((Integer) session.getAttribute("userId"));
@@ -31,9 +31,19 @@ public class housecontratController {
         return "contract/showcontract";
     }
 
+
     @GetMapping("/updatehousecontrat")
     public String toupdatecontractlist(Integer owner_id,Integer tenant_id,Integer house_id, HttpSession session,Model model){
 
         return "";
+    }
+
+    //房客界面，点击和合同查看展示该房客的合同信息
+    @GetMapping("/showtenantcontract")
+    public String getTenantContract(HttpSession session, Model model) {
+        List<TableAll> contractlists = joinMapper.getTenantContract((Integer) session.getAttribute("userId"));
+        //List<HouseContract> contractlists = housecontractMapper.getHouseContract((Integer) session.getAttribute("userId"));
+        model.addAttribute("contractlists", contractlists);
+        return "contract/showtenantcontract";
     }
 }

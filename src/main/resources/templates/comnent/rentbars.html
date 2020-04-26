@@ -79,8 +79,8 @@
                 <span class="pull-right glyphicon glyphicon-chevron-down"></span>
             </a>
             <ul id="docCollapse2" class="nav nav-list collapse in">
-                <li><a href="#" class="text-center">租赁房屋</a></li>
-                <li><a href="#" class="text-center">月租缴纳</a></li>
+                <li><a th:href="@{/rentlist}" class="text-center"
+                       th:class="${textmutedUrl == 'rentlist' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">租赁房屋</a></li>
             </ul>
 
         </li>
@@ -93,7 +93,8 @@
                 <span class="pull-right glyphicon glyphicon-chevron-down"></span>
             </a>
             <ul id="docCollapse3" class="nav nav-list collapse in">
-                <li><a href="#" class="text-center">合同查看</a></li>
+                <li><a th:href="@{/showtenantcontract}" class="text-center"
+                       th:class="${textmutedUrl == 'showtenantcontract' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">合同查看</a></li>
                 <!-- <li><a href="#" class="text-center">合同查看</a></li>-->
             </ul>
         </li>
