@@ -35,9 +35,13 @@ public class renthouseController {
         List<House> houselists = houseMapper.findRenthouseList();
         for (House houselist : houselists){
             if(houseapplyMapper.judgeApplyStatus(houselist.getHouse_id(),(Integer) session.getAttribute("userId")) == null)
+            {
+                houseMapper.updateHouseapply('0',houselist.getHouse_id());
                 houselist.setApply_situation('0');
-            else
+            } else{
+                houseMapper.updateHouseapply('1',houselist.getHouse_id());
                 houselist.setApply_situation('1');
+            }
         }
         model.addAttribute("houselists", houselists);
         System.out.println(houselists);

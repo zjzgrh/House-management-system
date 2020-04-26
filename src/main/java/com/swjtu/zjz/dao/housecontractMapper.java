@@ -11,7 +11,8 @@ import java.util.List;
 @Mapper
 public interface housecontractMapper {
 
-    @Insert("insert into house_contract (owner_id,house_id,tenant_id,contract_startdate) values (#{owner_id},#{house_id},#{tenant_id},#{contract_startdate})")
+    @Insert("insert into house_contract (owner_id,house_id,tenant_id,contract_startdate,contract_enddate) " +
+            "values (#{owner_id},#{house_id},#{tenant_id},#{contract_startdate},#{contract_enddate})")
     void addHouseContract(HouseContract houseContract);
 
     @Select("select * from house_contract where owner_id = #{owner_id}")

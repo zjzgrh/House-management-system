@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -47,16 +48,26 @@ public class rentController {
         houseMapper.updateRentalsituation('1',house_id);
         System.out.println("这里是两个ID：" + tenant_id + "   " +  house_id);
         Rent rent = new Rent((Integer) session.getAttribute("userId"),tenant_id,house_id,new Date());
-        HouseContract houseContract = new HouseContract((Integer) session.getAttribute("userId"), tenant_id, house_id, new Date());
         System.out.println("传到数据库中的租赁表中的数据：" + rent);
         rentMapper.addHouseRent(rent);
+        //这里将房主房客房子三方添加到合同表中
+        HouseContract houseContract = new HouseContract((Integer) session.getAttribute("userId"), tenant_id, house_id, new Date());
+        //查一下房子的租期，存到合同信息里面
+        int month = houseMapper.findHouse(house_id).getRent_time();
+        model.addAttribute("renttime", month);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.add(Calendar.MONTH,month);
+        Date endtime = calendar.getTime();
+        houseContract.setContract_enddate(endtime);
         housecontractMapper.addHouseContract(houseContract);
         return "redirect:/houseapply";
     }
 
     @GetMapping("/rentmanage")
     public String rentmanagelist(HttpSession session, Model model){
-        List<Rent> rentlists = rentMapper.getRentHouselists((Integer) session.getAttribute("userId"));
+        //List<Rent> rentlists = rentMapper.getRentHouselists((Integer) session.getAttribute("userId"));
+        List<TableAll> rentlists = joinMapper.getOwnerRent((Integer) session.getAttribute("userId"));
         model.addAttribute("rentlists", rentlists);
         return "rentmanage/rentmanagelist";
     }
