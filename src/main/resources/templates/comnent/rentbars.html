@@ -71,7 +71,8 @@
 
         <li role="presentation" id="bar-2">
 
-            <a href="#docCollapse2" class="nav-header collapsed text-muted" data-toggle="collapse" id="collapseParent2">
+            <a href="#docCollapse2" class="nav-header collapsed text-muted" data-toggle="collapse" id="collapseParent2"
+               th:class="${textmutedUrl == 'rentlist' ? 'nav-header collapse' : 'nav-header text-muted collapse'}">
                 <!--span的作用是调用图标-->
                 <span class="glyphicon glyphicon-jpy"></span>
                 租金信息
@@ -86,7 +87,8 @@
         </li>
 
         <li role="presentation" id="bar-3">
-            <a href="#docCollapse3" class="nav-header collapsed text-muted" data-toggle="collapse" id="collapseParent3">
+            <a href="#docCollapse3" class="nav-header collapsed text-muted" data-toggle="collapse" id="collapseParent3"
+               th:class="${textmutedUrl == 'showtenantcontract' ? 'nav-header collapse' : 'nav-header text-muted collapse'}">
                 <!--span的作用是调用图标-->
                 <span class="glyphicon glyphicon-list-alt"></span>
                 合同信息

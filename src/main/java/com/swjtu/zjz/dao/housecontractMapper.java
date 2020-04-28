@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -17,6 +18,8 @@ public interface housecontractMapper {
     void addHouseContract(HouseContract houseContract);
 
     @Select("select * from house_contract where owner_id = #{owner_id}")
-    List<HouseContract> getHouseContract(Integer owner_id);
+    List<HouseContract> getHouseContractList(Integer owner_id);
 
+    @Select("select * from house_contract where owner_id = #{owner_id} and tenant_id = #{tenant_id} and house_id = #{house_id} and contract_startdate = #{contract_startdate}")
+    HouseContract getHouseContract(Integer owner_id, Integer tenant_id, Integer house_id, Date contract_startdate);
 }

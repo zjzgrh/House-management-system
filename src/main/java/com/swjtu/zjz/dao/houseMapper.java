@@ -53,4 +53,7 @@ public interface houseMapper {
     @Select("select * from house where owner_identitynum = #{owner_identitynum} and house_apply = '1'")
     List<House> getApplyhouseList(String owner_identitynum);
 
+    //更改房子的租期
+    @Update("update house set rent_time = #{rent_time} where house_id = #{house_id}")
+    void updateHouseRenttime(Integer rent_time, Integer house_id);
 }
