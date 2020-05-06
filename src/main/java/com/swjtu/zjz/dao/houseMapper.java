@@ -17,8 +17,22 @@ public interface houseMapper {
             "#{rent_time},#{owner_id})")
     void addhouse(House house);
 
-    @Select("select * from house where owner_id = #{owner_id}")
+    //查询未发布的房源信息
+    @Select("select * from house where owner_id = #{owner_id} and post_status = '0'")
     List<House> findHouseList(Integer owner_id);
+
+    //查询已发布房源信息列表
+    @Select("select * from house where owner_id = #{owner_id} and post_status = '1'")
+    List<House> findPublishHouseList(Integer owner_id);
+
+    //删除已发布房源信息列表
+    @Update("update house set post_status = '0' where house_id = #{house_id}")
+    void deletePublishHouse(Integer house_id);
+
+    //发布某房子
+    @Update("update house set post_status = '1' where house_id = #{house_id}")
+    void publishHouse(Integer house_id);
+
 
     @Select("select * from house where house_id = #{houseId}")
     House findHouse(Integer houseId);
@@ -30,7 +44,7 @@ public interface houseMapper {
     void updateHouse(House house);
 
     //查找所有未被租赁的房屋信息
-    @Select("select * from house where rental_situation = '0'")
+    @Select("select * from house where rental_situation = '0' and post_status = '1'")
     List<House> findRenthouseList();
 
     //查找所有用户申请的房屋信息

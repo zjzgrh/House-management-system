@@ -14,6 +14,7 @@ public class House {
     private Integer rent_time;
     private Integer owner_id;
     private char apply_situation;
+    private char post_status;
 
     public House(){}
 
@@ -134,6 +135,14 @@ public class House {
         this.apply_situation = apply_situation;
     }
 
+    public char getPost_status() {
+        return post_status;
+    }
+
+    public void setPost_status(char post_status) {
+        this.post_status = post_status;
+    }
+
     @Override
     public String toString() {
         return "House{" +
@@ -150,6 +159,7 @@ public class House {
                 ", rent_time=" + rent_time +
                 ", owner_id=" + owner_id +
                 ", apply_situation=" + apply_situation +
+                ", post_status=" + post_status +
                 '}';
     }
 }

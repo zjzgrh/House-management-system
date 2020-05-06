@@ -36,16 +36,20 @@ public class housecontratController {
         List<TableAll> contractlists = joinMapper.getOwnerContract((Integer) session.getAttribute("userId"));
         //List<HouseContract> contractlists = housecontractMapper.getHouseContract((Integer) session.getAttribute("userId"));
         model.addAttribute("contractlists", contractlists);
+        System.out.println("这里是输出到界面的数据：" + contractlists);
         return "contract/showcontract";
     }
 
     //跳转到修改合同界面
     @GetMapping("/toupdatehousecontrat")
     public String toupdatecontract(Integer owner_id, Integer tenant_id, Integer house_id, Date contract_startdate, Model model){
+        System.out.println(contract_startdate);
         HouseContract houseContract = housecontractMapper.getHouseContract(owner_id, tenant_id, house_id, contract_startdate);
         House house = houseMapper.findHouse(house_id);
         model.addAttribute("house", house);
         model.addAttribute("houseContract", houseContract);
+        System.out.println("Houae:" + house);
+        System.out.println("HouseContract:" + houseContract);
         return "contract/updatecontract";
     }
 

@@ -1,6 +1,6 @@
 package com.swjtu.zjz.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class TableAll {
     private Integer owner_id;

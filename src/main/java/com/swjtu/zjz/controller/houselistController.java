@@ -40,6 +40,29 @@ public class houselistController {
         return "emp/houselist";
     }
 
+    //点击首页的已发布房源  --->  后台查询数据库已发布房源信息 --> 跳转进入已发布房源界面
+    @GetMapping("/published")
+    public String publishedhouselist(Model model, HttpSession session){
+        List<House> publishhouselists = houseMapper.findPublishHouseList((Integer) session.getAttribute("userId"));
+        model.addAttribute("publishhouselists", publishhouselists);
+        System.out.println("已发布房源: " + publishhouselists);
+        return "emp/publishedhouselist";
+    }
+
+    //取消发布某房子
+    @GetMapping("/unpublish/{id}")
+    public String unpublishhouse(@PathVariable("id") Integer id, Model model, HttpSession session){
+        houseMapper.deletePublishHouse(id);
+        return "redirect:/published";
+    }
+
+    //发布某房子
+    @GetMapping("/publish/{id}")
+    public String publishhouse(@PathVariable("id") Integer id, Model model, HttpSession session){
+        houseMapper.publishHouse(id);
+        return "redirect:/published";
+    }
+
 /*//没有实名注册时，先跳转界面进行实名注册
         if(houseOwner.getOwner_identitynum() == null){
             model.addAttribute("realname", "请先进行实名注册再进行其他操作！");

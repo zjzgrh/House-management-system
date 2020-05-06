@@ -47,7 +47,7 @@
 
         <li role="presentation" id="bar-1">
             <a href="#docCollapse1" class="nav-header text-muted collapse" data-toggle="collapse" id="collapseParent1"
-               th:class="${textmutedUrl == 'houselist' || textmutedUrl == 'addhouse' ? 'nav-header collapse' : 'nav-header text-muted collapse'}">
+               th:class="${textmutedUrl == 'houselist' || textmutedUrl == 'addhouse' || textmutedUrl == 'publishedhouselist' ? 'nav-header collapse' : 'nav-header text-muted collapse'}">
                 <!--span的作用是调用图标-->
                 <span class="glyphicon glyphicon-home "></span>
                 房源信息
@@ -57,8 +57,12 @@
             <!--collapse in：作用是将折叠默认设置为展开状态。   collapse ：作用是将折叠默认设置为闭合状态。-->
             <ul id="docCollapse1" class="nav nav-list collapse in" >
                 <li>
+                    <a th:href="@{/published}" class="nav-header text-muted text-center"
+                       th:class="${textmutedUrl == 'publishedhouselist' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">已发布房源</a>
+                </li>
+                <li>
                     <a th:href="@{/emps}" class="nav-header text-muted text-center"
-                       th:class="${textmutedUrl == 'houselist' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">房源查看</a>
+                       th:class="${textmutedUrl == 'houselist' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">未发布房源</a>
                 </li>
                 <li><a th:href="@{/emp}" class="text-center"
                        th:class="${textmutedUrl == 'addhouse' ? 'nav-header text-center' : 'nav-header text-muted text-center'}">添加房源</a>
@@ -90,7 +94,7 @@
 
         <li role="presentation" id="bar-3">
             <a href="#docCollapse3" class="nav-header collapsed text-muted" data-toggle="collapse" id="collapseParent3"
-               th:class="${textmutedUrl == 'owneraccount'||textmutedUrl == 'realname' ? 'nav-header collapse' : 'nav-header text-muted collapse'}">
+               th:class="${textmutedUrl == 'showhousecontrat' ? 'nav-header collapse' : 'nav-header text-muted collapse'}">
                 <!--span的作用是调用图标-->
                 <span class="glyphicon glyphicon-list-alt"></span>
                 合同信息
