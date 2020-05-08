@@ -9,6 +9,7 @@ public class HouseApply {
     private Integer house_id;
     private Date apply_starttime;
     private String apply_remark;
+    private char apply_result;
 
     HouseApply(){}
 
@@ -50,6 +51,14 @@ public class HouseApply {
         this.apply_remark = apply_remark;
     }
 
+    public char getApply_result() {
+        return apply_result;
+    }
+
+    public void setApply_result(char apply_result) {
+        this.apply_result = apply_result;
+    }
+
     @Override
     public String toString() {
         return "HouseApply{" +
@@ -57,6 +66,7 @@ public class HouseApply {
                 ", house_id=" + house_id +
                 ", apply_starttime=" + apply_starttime +
                 ", apply_remark='" + apply_remark + '\'' +
+                ", apply_result=" + apply_result +
                 '}';
     }
 }

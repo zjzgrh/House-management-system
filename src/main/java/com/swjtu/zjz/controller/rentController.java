@@ -1,9 +1,6 @@
 package com.swjtu.zjz.controller;
 
-import com.swjtu.zjz.dao.houseMapper;
-import com.swjtu.zjz.dao.housecontractMapper;
-import com.swjtu.zjz.dao.joinMapper;
-import com.swjtu.zjz.dao.rentMapper;
+import com.swjtu.zjz.dao.*;
 import com.swjtu.zjz.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +27,9 @@ public class rentController {
     @Autowired
     private housecontractMapper housecontractMapper;
 
+    @Autowired
+    private houseapplyMapper houseapplyMapper;
+
 
 
     //房主查看房屋租赁申请请求，查找申请表中房主用户拥有的房子的申请记录，需要知道每条记录的申请房客的id及name
@@ -43,8 +43,13 @@ public class rentController {
         return "rentmanage/houseapplylist";
     }
 
+    //在房主系统，房子申请页面，点击同意时，将该房子添加到租赁表和合同表,把申请结果设置为1，显示为申请成功
     @GetMapping("/confirmrent")
     public String renthouse( Integer house_id,Integer tenant_id,Model model,HttpSession session){
+        //将申请表中的申请结果设置为1
+        houseapplyMapper.setApplyResultTrue(house_id,tenant_id);
+
+        //房子的租赁状态设置为1，将房主房客房子三方添加到租赁表中
         houseMapper.updateRentalsituation('1',house_id);
         System.out.println("这里是两个ID：" + tenant_id + "   " +  house_id);
         Rent rent = new Rent((Integer) session.getAttribute("userId"),tenant_id,house_id,new Date());
@@ -61,6 +66,16 @@ public class rentController {
         Date endtime = calendar.getTime();
         houseContract.setContract_enddate(endtime);
         housecontractMapper.addHouseContract(houseContract);
+
+
+        return "redirect:/houseapply";
+    }
+
+    //在房主系统，房子申请页面，点击拒绝时，把申请结果设置为0，显示为申请失败
+    @GetMapping("/refuserent")
+    public String denyrenthouse( Integer house_id,Integer tenant_id,Model model,HttpSession session){
+        //将申请表中的申请结果设置为0
+        houseapplyMapper.setApplyResultFalse(house_id,tenant_id);
         return "redirect:/houseapply";
     }
 

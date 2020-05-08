@@ -45,10 +45,11 @@ public class TableAll {
     private Integer need_rent;
     private Integer actual_rent;
     private char rent_status;
+    private char apply_result;
 
     @Override
     public String toString() {
-        return "Model{" +
+        return "TableAll{" +
                 "owner_id=" + owner_id +
                 ", owner_identitynum='" + owner_identitynum + '\'' +
                 ", owner_name='" + owner_name + '\'' +
@@ -91,6 +92,7 @@ public class TableAll {
                 ", need_rent=" + need_rent +
                 ", actual_rent=" + actual_rent +
                 ", rent_status=" + rent_status +
+                ", apply_result=" + apply_result +
                 '}';
     }
 
@@ -428,5 +430,13 @@ public class TableAll {
 
     public void setRent_status(char rent_status) {
         this.rent_status = rent_status;
+    }
+
+    public char getApply_result() {
+        return apply_result;
+    }
+
+    public void setApply_result(char apply_result) {
+        this.apply_result = apply_result;
     }
 }

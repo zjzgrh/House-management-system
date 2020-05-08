@@ -39,6 +39,7 @@
                             <th>装修情况</th>
                             <th>描述</th>
                             <th>操作</th>
+                            <th>申请状态</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -53,6 +54,13 @@
                             <td th:text="${list.house_detail}"></td>
                             <td>
                                 <a class="btn btn-sm btn-primary" th:href="@{/cancelapply/} + ${list.house_id}" th:text="${list.apply_situation} == '1' ? '取消申请':'已取消申请'">取消申请</a>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-primary"  th:text="${list.apply_result} == '1' ? '成功':'失败' ">正在申请</button>
+
+<!--                                <button class="btn btn-sm btn-primary" th:text="正在" th:if="${list.apply_result}  == null"></button>-->
+<!--                                <button class="btn btn-sm btn-primary" th:text="失败" th:if="${list.apply_result == '0'}"></button>-->
+<!--                                <button class="btn btn-sm btn-primary" th:text="成功" th:if="${list.apply_result == '1'}"></button>-->
                             </td>
                         </tr>
                         </tbody>

@@ -6,6 +6,7 @@ import com.swjtu.zjz.dao.houseownerMapper;
 import com.swjtu.zjz.dao.joinMapper;
 import com.swjtu.zjz.model.House;
 import com.swjtu.zjz.model.HouseApply;
+import com.swjtu.zjz.model.TableAll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import javax.servlet.http.HttpSession;
 import java.net.Inet4Address;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -70,8 +72,8 @@ public class renthouseController {
     @GetMapping("/applyhouselist")
     public String showApplyhouseList(Model model,HttpSession session){
 //        List<House> houselists = houseapplyMapper.getApplyHouselists((Integer) session.getAttribute("userId"));
-        List<House> houselists = joinMapper.getTenantApplyHouse((Integer) session.getAttribute("userId"));
-        System.out.println(houselists);
+        List<TableAll> houselists = joinMapper.getTenantApplyHouse((Integer) session.getAttribute("userId"));
+        System.out.println("房客这里的申请表情况：" + houselists);
         model.addAttribute("houselists", houselists);
         return "renthouse/applyhouselist";
     }
