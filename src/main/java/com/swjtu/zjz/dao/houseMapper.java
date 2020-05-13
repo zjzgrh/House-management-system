@@ -37,6 +37,9 @@ public interface houseMapper {
     @Select("select * from house where house_id = #{houseId}")
     House findHouse(Integer houseId);
 
+    //找到房子的租赁状态
+    @Select("select rental_situation from house where house_id = #{house_id}")
+    Character getHouseRentalSituation(Integer house_id);
 
     @Update("update house set house_address = #{house_address},house_monthlyrent = #{house_monthlyrent},house_detail = #{house_detail},house_area = #{house_area}," +
             "house_use = #{house_use}, house_type = #{house_type}, house_floor = #{house_floor},house_decoration = #{house_decoration},rent_time = #{rent_time} " +
@@ -60,8 +63,9 @@ public interface houseMapper {
     @Select("select house_apply from house where house_id = #{house_id}")
     char getHouseapply(Integer house_id);
 
+    //更改房子的租赁状态
     @Update("update house set apply_situation = #{apply_situation} where house_id = #{house_id}")
-    void updateHouseapply(char apply_situation,Integer house_id);
+    void updateHouseApplySituation(char apply_situation,Integer house_id);
 
     //查找用户申请的房屋信息
     @Select("select * from house where owner_identitynum = #{owner_identitynum} and house_apply = '1'")
@@ -70,4 +74,8 @@ public interface houseMapper {
     //更改房子的租期
     @Update("update house set rent_time = #{rent_time} where house_id = #{house_id}")
     void updateHouseRenttime(Integer rent_time, Integer house_id);
+
+    //查找房子的租期
+    @Select("select rent_time from house where house_id = #{house_id}")
+    Integer getHouseRenttime(Integer house_id);
 }

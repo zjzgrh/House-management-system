@@ -33,4 +33,5 @@ public interface houseapplyMapper {
     //查询申请表中的申请结果
     @Select("select apply_result from house_apply where house_id = #{house_id} and tenant_id  = #{tenant_id}")
     char findApplyResult(Integer house_id,Integer tenant_id);
+
 }

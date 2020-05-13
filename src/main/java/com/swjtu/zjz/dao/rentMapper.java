@@ -12,7 +12,7 @@ import java.util.List;
 
 @Mapper
 public interface rentMapper {
-    @Insert("insert into rent (owner_id,house_id,tenant_id,rent_starttime) values (#{owner_id},#{house_id},#{tenant_id},#{rent_starttime})")
+    @Insert("insert into rent (owner_id,house_id,tenant_id,rent_starttime,rent_time) values (#{owner_id},#{house_id},#{tenant_id},#{rent_starttime},#{rent_time})")
     void addHouseRent(Rent rent);
 
     @Select("select * from rent where owner_id = #{id}")

@@ -60,7 +60,7 @@
                             <td>
 <!--                                <input type="hidden" name="tenant_id" th:value="${list.tenant_id}">-->
                                 <a class="btn btn-sm btn-primary" th:href="@{/confirmrent(house_id = ${list.house_id},tenant_id = ${list.tenant_id})}" th:text="${list.rental_situation} == '0' ? '同意':'已同意'"></a>
-                                <a class="btn btn-sm btn-primary" th:href="@{/refuserent(house_id = ${list.house_id},tenant_id = ${list.tenant_id})}" th:text="${list.apply_result} == '1' ? '拒绝':'已拒绝'"></a>
+                                <a class="btn btn-sm btn-primary" th:href="@{/refuserent(house_id = ${list.house_id},tenant_id = ${list.tenant_id})}" th:text="${list.apply_result} == '0' ? '已拒绝':'拒绝'"></a>
                             </td>
                         </tr>
                         </tbody>

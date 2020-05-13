@@ -50,9 +50,14 @@ public class rentController {
         houseapplyMapper.setApplyResultTrue(house_id,tenant_id);
 
         //房子的租赁状态设置为1，将房主房客房子三方添加到租赁表中
+        //在申请没有被拒绝的情况下，进行操作，即申请表的申请结果为1或者2
+        if(houseapplyMapper.findApplyResult(house_id,tenant_id) == '0')
+            return "redirect:/houseapply";
+
         houseMapper.updateRentalsituation('1',house_id);
         System.out.println("这里是两个ID：" + tenant_id + "   " +  house_id);
         Rent rent = new Rent((Integer) session.getAttribute("userId"),tenant_id,house_id,new Date());
+        rent.setRent_time(houseMapper.getHouseRenttime(house_id));
         System.out.println("传到数据库中的租赁表中的数据：" + rent);
         rentMapper.addHouseRent(rent);
         //这里将房主房客房子三方添加到合同表中
@@ -67,15 +72,16 @@ public class rentController {
         houseContract.setContract_enddate(endtime);
         housecontractMapper.addHouseContract(houseContract);
 
-
         return "redirect:/houseapply";
     }
 
     //在房主系统，房子申请页面，点击拒绝时，把申请结果设置为0，显示为申请失败
     @GetMapping("/refuserent")
     public String denyrenthouse( Integer house_id,Integer tenant_id,Model model,HttpSession session){
-        //将申请表中的申请结果设置为0
-        houseapplyMapper.setApplyResultFalse(house_id,tenant_id);
+        //将申请表中的申请结果设置为0,代表申请失败
+        //在设置时，如果申请已经被同意，则不进行操作，房子的租赁状态为1时，不进行操作
+        if(houseMapper.getHouseRentalSituation(house_id) == '0')
+            houseapplyMapper.setApplyResultFalse(house_id,tenant_id);
         return "redirect:/houseapply";
     }
 
@@ -90,6 +96,14 @@ public class rentController {
     //在房客界面，点击房屋租赁时，显示该房客租赁的所有的房屋信息
     @GetMapping("/rentlist")
     public String showRentList(HttpSession session, Model model){
+        List<TableAll> rentlists = joinMapper.getTenantRent((Integer) session.getAttribute("userId"));
+        model.addAttribute("rentlists", rentlists);
+        return "renthouse/rentlist";
+    }
+
+    //在房客界面，点击房屋租赁的已租赁房屋时，显示该房客已经租赁的所有的房屋信息
+    @GetMapping("/rentedlist")
+    public String showRentedList(HttpSession session, Model model){
         List<TableAll> rentlists = joinMapper.getTenantRent((Integer) session.getAttribute("userId"));
         model.addAttribute("rentlists", rentlists);
         return "renthouse/rentlist";

@@ -35,7 +35,7 @@ public class renthouseController {
     @GetMapping("/renthouselist")
     public String showRenthouseList(Model model,HttpSession session){
         List<House> houselists = houseMapper.findRenthouseList();
-        for (House houselist : houselists){
+       /* for (House houselist : houselists){
             if(houseapplyMapper.judgeApplyStatus(houselist.getHouse_id(),(Integer) session.getAttribute("userId")) == null)
             {
                 houseMapper.updateHouseapply('0',houselist.getHouse_id());
@@ -44,7 +44,7 @@ public class renthouseController {
                 houseMapper.updateHouseapply('1',houselist.getHouse_id());
                 houselist.setApply_situation('1');
             }
-        }
+        }*/
         model.addAttribute("houselists", houselists);
         System.out.println(houselists);
         return "renthouse/renthouselist";
@@ -53,6 +53,7 @@ public class renthouseController {
     //在房源界面，点击申请按钮，把房子表中申请状态置为1，然后将该申请内容写入申请表。
     @GetMapping("/apply/{id}")
     public String applyhouse(@PathVariable("id") Integer id, HttpSession session,Model model){
+        houseMapper.updateHouseApplySituation('1',id);
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         HouseApply houseApply = new HouseApply((Integer) session.getAttribute("userId"), id, date);
@@ -63,7 +64,7 @@ public class renthouseController {
     //在房子申请界面，点击取消申请时，将该房子的申请状态置为0，并在申请表中删除该申请信息
     @GetMapping("/cancelapply/{id}")
     public String cancelapply(@PathVariable("id") Integer id, Model model){
-
+        houseMapper.updateHouseApplySituation('0',id);
         houseapplyMapper.deleteApplyHouseId(id);
         return "redirect:/applyhouselist";
     }

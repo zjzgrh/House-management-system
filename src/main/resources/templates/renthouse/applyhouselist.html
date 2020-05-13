@@ -56,7 +56,8 @@
                                 <a class="btn btn-sm btn-primary" th:href="@{/cancelapply/} + ${list.house_id}" th:text="${list.apply_situation} == '1' ? '取消申请':'已取消申请'">取消申请</a>
                             </td>
                             <td>
-                                <button class="btn btn-sm btn-primary"  th:text="${list.apply_result} == '1' ? '成功':'失败' ">正在申请</button>
+                                <span class="btn btn-sm btn-primary" th:if="${list.apply_result} ne '2'" th:text="${list.apply_result} == '1' ? '成功':'失败' " ></span>
+                                <span class="btn btn-sm btn-primary" th:if="${list.apply_result} eq '2'" >正在申请</span>
 
 <!--                                <button class="btn btn-sm btn-primary" th:text="正在" th:if="${list.apply_result}  == null"></button>-->
 <!--                                <button class="btn btn-sm btn-primary" th:text="失败" th:if="${list.apply_result == '0'}"></button>-->
