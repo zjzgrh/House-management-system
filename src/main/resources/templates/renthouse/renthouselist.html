@@ -55,6 +55,9 @@
                                 <a class="btn btn-sm btn-primary"  th:href="@{/apply/} + ${list.house_id}"
                                    th:text="${list.apply_situation} == '0' ? '申请':'已申请'"></a>
                             </td>
+                            <td>
+                                <a class="btn btn-sm btn-primary"  th:href="@{/findcomment/} + ${list.house_id}">查看评价</a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

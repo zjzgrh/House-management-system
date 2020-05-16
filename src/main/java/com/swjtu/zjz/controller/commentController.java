@@ -2,16 +2,15 @@ package com.swjtu.zjz.controller;
 
 import com.swjtu.zjz.dao.commentMapper;
 import com.swjtu.zjz.model.HouseComment;
+import com.swjtu.zjz.model.TableAll;
 import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class commentController {
@@ -41,5 +40,12 @@ public class commentController {
     private String housecomment(Integer tenant_id, Integer house_id) {
         //commentMapper.deleteHouseComment(tenant_id,house_id);
         return "renthouse/rentedlist";
+    }
+
+    @GetMapping("/findcomment/{house_id}")
+    private String findHouseComment(@PathVariable("house_id") Integer house_id,Model model){
+        List<TableAll> commentlists = commentMapper.getcommentlist(house_id);
+        model.addAttribute("commentlists", commentlists);
+        return "comment/ahousecomment";
     }
 }

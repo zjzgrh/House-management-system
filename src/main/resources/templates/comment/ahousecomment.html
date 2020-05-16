@@ -21,7 +21,7 @@
 <div class="container-fluid">
     <div class="row">
         <!--侧边栏调用-->
-        <div th:replace="comnent/rentbars::sidebar(textmutedUrl = 'rentedlist')"></div>
+        <div th:replace="comnent/rentbars::sidebar(textmutedUrl = 'renthouselist')"></div>
         <!--右侧主体部分-->
         <!--jumbotron:将div整个模块的背景变为灰色-->
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
@@ -31,42 +31,14 @@
                     <table class="table table-striped table-sm">
                         <thead>
                         <tr>
-                            <th>房主</th>
-                            <th>房客</th>
-                            <th>地址</th>
-                            <th>月租</th>
-                            <th>面积</th>
-                            <th>用途</th>
-                            <th>户型</th>
-                            <th>楼层</th>
-                            <th>装修情况</th>
-                            <th>描述</th>
-                            <th>租赁时间</th>
-                            <th>租期</th>
-                            <th>操作</th>
+                            <th>房客用户</th>
                             <th>评价内容</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="list:${rentlists}">
-                            <td th:text="${list.owner_name}"></td>
+                        <tr th:each="list:${commentlists}">
                             <td th:text="${list.tenant_name}"></td>
-                            <td th:text="${list.house_address}"></td>
-                            <td th:text="${list.house_monthlyrent}"></td>
-                            <td th:text="${list.house_area}"></td>
-                            <td th:text="${list.house_use}"></td>
-                            <td th:text="${list.house_type}"></td>
-                            <td th:text="${list.house_floor}"></td>
-                            <td th:text="${list.house_decoration}"></td>
-                            <td th:text="${list.house_detail}"></td>
-                            <td th:text="${list.rent_starttime}"></td>
-                            <td th:text="${list.rent_time}"></td>
-                            <td>
-                                <a th:href="@{/tocomment(tenant_id = ${list.tenant_id},house_id = ${list.house_id})}" class="btn btn-sm btn-primary">评论</a>
-                            </td>
-                            <td>
-                                <p th:if="${list.comment_detail}" th:text="${list.comment_detail}"></p>
-                            </td>
+                            <td th:text="${list.comment_detail}"></td>
                         </tr>
                         </tbody>
                     </table>

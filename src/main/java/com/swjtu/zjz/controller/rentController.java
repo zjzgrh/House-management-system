@@ -30,6 +30,8 @@ public class rentController {
     @Autowired
     private houseapplyMapper houseapplyMapper;
 
+    @Autowired
+    private commentMapper commentMapper;
 
 
     //房主查看房屋租赁申请请求，查找申请表中房主用户拥有的房子的申请记录，需要知道每条记录的申请房客的id及name
@@ -106,6 +108,9 @@ public class rentController {
     @GetMapping("/rentedlist")
     public String showRentedList(HttpSession session, Model model){
         List<TableAll> rentlists = joinMapper.getTenantRent((Integer) session.getAttribute("userId"));
+        for(TableAll rentlist :rentlists){
+            rentlist.setComment_detail(commentMapper.findCommentDetail(rentlist.getTenant_id(),rentlist.getHouse_id()));
+        }
         model.addAttribute("rentlists", rentlists);
         return "renthouse/rentedlist";
     }

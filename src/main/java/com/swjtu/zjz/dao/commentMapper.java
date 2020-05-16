@@ -1,12 +1,11 @@
 package com.swjtu.zjz.dao;
 
 import com.swjtu.zjz.model.HouseComment;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Update;
+import com.swjtu.zjz.model.TableAll;
+import org.apache.ibatis.annotations.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Mapper
 public interface commentMapper {
@@ -22,5 +21,12 @@ public interface commentMapper {
     @Delete("delete from house_comment where tenant_id = #{tenant_id} and house_id = #{house_id}")
     void deleteHouseComment(Integer tenant_id, Integer house_id);
 
+    //查找评论内容
+    @Select("select comment_detail from house_comment where tenant_id = #{tenant_id} and house_id = #{house_id}")
+    String findCommentDetail(Integer tenant_id, Integer house_id);
+
+    //查找某房子额所有的评价
+    @Select("select * from house_comment,house_tenant where house_comment.tenant_id = house_tenant.tenant_id and house_comment.house_id = #{house_id}")
+    List<TableAll> getcommentlist(Integer house_id);
 
 }
