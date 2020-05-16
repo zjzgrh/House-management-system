@@ -46,13 +46,14 @@ public class rentController {
     //在房主系统，房子申请页面，点击同意时，将该房子添加到租赁表和合同表,把申请结果设置为1，显示为申请成功
     @GetMapping("/confirmrent")
     public String renthouse( Integer house_id,Integer tenant_id,Model model,HttpSession session){
-        //将申请表中的申请结果设置为1
-        houseapplyMapper.setApplyResultTrue(house_id,tenant_id);
 
         //房子的租赁状态设置为1，将房主房客房子三方添加到租赁表中
         //在申请没有被拒绝的情况下，进行操作，即申请表的申请结果为1或者2
         if(houseapplyMapper.findApplyResult(house_id,tenant_id) == '0')
             return "redirect:/houseapply";
+
+        //将申请表中的申请结果设置为1
+        houseapplyMapper.setApplyResultTrue(house_id,tenant_id);
 
         houseMapper.updateRentalsituation('1',house_id);
         System.out.println("这里是两个ID：" + tenant_id + "   " +  house_id);
@@ -106,7 +107,7 @@ public class rentController {
     public String showRentedList(HttpSession session, Model model){
         List<TableAll> rentlists = joinMapper.getTenantRent((Integer) session.getAttribute("userId"));
         model.addAttribute("rentlists", rentlists);
-        return "renthouse/rentlist";
+        return "renthouse/rentedlist";
     }
 
 }

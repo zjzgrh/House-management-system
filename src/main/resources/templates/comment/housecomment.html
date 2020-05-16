@@ -1,0 +1,54 @@
+<!--这里是房主同意租赁申请后，进入租金管理界面-->
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>租赁管理</title>
+    <!-- 3.3.7版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/dist/css/bootstrap.min.css}" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Custom styles for this template -->
+    <!--	<link href="asserts/css/dashboard.css" rel="stylesheet">-->
+
+</head>
+
+<body>
+<!-- 顶部栏调用 -->
+<div th:replace="comnent/rentbars::topbar"></div>
+<!-- 主体部分 -->
+<div class="container-fluid">
+    <div class="row">
+        <!--侧边栏调用-->
+        <div th:replace="comnent/rentbars::sidebar(textmutedUrl = 'rentedlist')"></div>
+        <!--右侧主体部分-->
+        <!--jumbotron:将div整个模块的背景变为灰色-->
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <div class="jumbotron d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h2>请输入评论内容！</h2>
+                <form th:action="@{/publishcomment(tenant_id = ${houseComment.tenant_id},house_id = ${houseComment.house_id})}" method="post">
+                    <div class="table-responsive">
+                        <textarea rows="3" th:name="comment" th:id="comment" th:placeholder="请输入评论" class="form-control" ></textarea>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-sm btn-primary"> 发布评论</button>
+                    <a class="btn btn-sm btn-danger" th:href="@{/cancelcomment(tenant_id = ${houseComment.tenant_id},house_id = ${houseComment.house_id})}">退出</a>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- Icons -->
+<script type="text/javascript" src="../../static/asserts/4.4.1/js/feather.min.js"></script>
+
+<!-- Graphs -->
+<script type="text/javascript" src="../../static/asserts/4.4.1/js/Chart.min.js"></script>
+<script th:src="@{webjars/jquery/3.4.1/jquery.js}"></script>
+<script th:src="@{webjars/jquery/3.4.1/jquery.slim.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js}" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

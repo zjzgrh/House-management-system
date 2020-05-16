@@ -15,14 +15,15 @@ public class HouseComment {
 
     public HouseComment(){}
 
-    public HouseComment(int tenant_id, Integer house_id, Date comment_time, char comment_authority, char comment_status, Integer comment_score, String comment_detail) {
+    public HouseComment(Integer tenant_id, Integer house_id) {
+        this.tenant_id = tenant_id;
+        this.house_id = house_id;
+    }
+
+    public HouseComment(Integer tenant_id, Integer house_id, Date comment_time) {
         this.tenant_id = tenant_id;
         this.house_id = house_id;
         this.comment_time = comment_time;
-        this.comment_authority = comment_authority;
-        this.comment_status = comment_status;
-        this.comment_score = comment_score;
-        this.comment_detail = comment_detail;
     }
 
     public Integer getTenant_id() {
