@@ -63,17 +63,6 @@ public class houselistController {
         return "redirect:/published";
     }
 
-/*//没有实名注册时，先跳转界面进行实名注册
-        if(houseOwner.getOwner_identitynum() == null){
-            model.addAttribute("realname", "请先进行实名注册再进行其他操作！");
-            return "/owners";
-        }else{
-        //已经进行实名注册就可以进行房源的添加
-            List<House> houselists = houseMapper.findHouseList(houseOwner.getOwner_id());
-            model.addAttribute("houselists", houselists);
-            return "emp/houselist";
-        }*/
-
     //跳转到房源添加页面
     @GetMapping("/emp")
     public String addhouse(Model model,HttpSession session){
