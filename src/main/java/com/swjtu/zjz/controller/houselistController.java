@@ -29,7 +29,7 @@ public class houselistController {
         删除语句：delete请求
     */
 
-    //显示房主 持有的所有的房子
+    //点击房主界面的未发布房源，显示房主 持有的所有的未发布的房子
     @GetMapping("/emps")
     public String houselist(Model model, HttpSession session){
         HouseOwner houseOwner = houseownerMapper.findOwnerid((Integer) session.getAttribute("userId"));
@@ -109,6 +109,7 @@ public class houselistController {
         return "redirect:/emps";
     }
 
+    //点击添加房子，跳转添加房源界面，进行房源的添加
     @PostMapping("/emp")
     public String addHouse(@RequestParam("Address") String Address, @RequestParam("Monthlyrent") Integer Monthlyrent,
                            @RequestParam("Detail") String Detail, @RequestParam("Area") Integer Area,

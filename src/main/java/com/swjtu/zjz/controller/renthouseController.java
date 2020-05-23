@@ -32,6 +32,7 @@ public class renthouseController {
     @Autowired
     private houseapplyMapper houseapplyMapper;
 
+    //在房客系统中，点击房源查看，可以查看发布的未被租赁的房屋
     @GetMapping("/renthouselist")
     public String showRenthouseList(Model model,HttpSession session){
         List<House> houselists = houseMapper.findRenthouseList();
