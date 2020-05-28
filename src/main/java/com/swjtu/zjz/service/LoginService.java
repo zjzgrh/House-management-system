@@ -42,6 +42,7 @@ public class LoginService implements loginServiceImpl {
             //判断角色
             //房主登录判断
             if (role.equals("owner")) {
+
                 //查询数据库
                 HouseOwner houseOwner = houseownerMapper.findPhonenum(phonenum);
 
@@ -65,6 +66,7 @@ public class LoginService implements loginServiceImpl {
                 }
                 //房客登录判断
             } else {
+
                 //查询数据库
                 HouseTenant houseTenant = housetenantMapper.findPhonenum(phonenum);
 

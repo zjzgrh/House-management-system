@@ -39,8 +39,22 @@ public class signinService implements signinServiceImpl {
         //用户名密码都不为空
         } else {
             //判断角色
+            //房主用户的注册
             if (role.equals("owner")) {
-                //房主用户的注册
+
+                //判断用户名格式，是否为11位手机号
+                if(phonenum.length() != 11){
+                    model.addAttribute("password",password);
+                    model.addAttribute("msg","用户名格式错误，为11位手机号！");
+                    return "signin";
+                }
+                //判断密码格式，是否为6-20位
+                if(password.length() < 6 || password.length() > 20){
+                    model.addAttribute("password",password);
+                    model.addAttribute("msg","密码格式错误，为6-20位字符或数字！");
+                    return "signin";
+                }
+
                 HouseOwner houseOwner = houseownerMapper.findPhonenum(phonenum);
 
                 //判断用户名是否被注册
@@ -56,6 +70,14 @@ public class signinService implements signinServiceImpl {
                 return "redirect:/login";
             } else {
                 //租客用户的注册
+
+                //判断用户名格式，是否为11位手机号
+                if(phonenum.length() != 11){
+                    model.addAttribute("password",password);
+                    model.addAttribute("msg","用户名格式错误，为11位手机号！");
+                    return "signin";
+                }
+
                 HouseTenant houseTenant = housetenantMapper.findPhonenum(phonenum);
 
                 //判断用户名是否被注册
