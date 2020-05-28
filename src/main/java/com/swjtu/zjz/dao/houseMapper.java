@@ -22,7 +22,7 @@ public interface houseMapper {
     List<House> findHouseList(Integer owner_id);
 
     //查询已发布房源信息列表
-    @Select("select * from house where owner_id = #{owner_id} and post_status = '1'")
+    @Select("select * from house where owner_id = #{owner_id} and post_status = '1' and rental_situation = '0'")
     List<House> findPublishHouseList(Integer owner_id);
 
     //删除已发布房源信息列表
@@ -78,4 +78,8 @@ public interface houseMapper {
     //查找房子的租期
     @Select("select rent_time from house where house_id = #{house_id}")
     Integer getHouseRenttime(Integer house_id);
+
+    //查找房子的租金
+    @Select("select house_monthlyrent from house where house_id = #{house_id}")
+    Integer getHousemonthlyrent(Integer house_id);
 }

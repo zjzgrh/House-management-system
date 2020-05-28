@@ -28,19 +28,27 @@ public interface joinMapper {
 
     //目的是查询租赁表中，某房主，拥有的所有的租赁的房子
     @Select("select house.house_id,house_tenant.tenant_id,house_owner.owner_name,house_tenant.tenant_name,house_address,house_monthlyrent," +
-            "house_detail,house_area,house_use, house_type,house_floor,house_decoration,house.rent_time,rental_situation,rent_starttime" +
+            "house_detail,house_area,house_use, house_type,house_floor,house_decoration,house.rent_time,rental_situation,rent_starttime,rent_status" +
             " from house_tenant,rent,house,house_owner " +
             "where house_tenant.tenant_id = rent.tenant_id and rent.house_id = house.house_id and rent.owner_id = house_owner.owner_id and " +
             "house_owner.owner_id = #{id}")
     List<TableAll> getOwnerRent(Integer id);
 
     //目的是查询租赁表中，某房客，拥有的所有的租赁的房子
-    @Select("select house.house_id,house_tenant.tenant_id,house_owner.owner_name,house_tenant.tenant_name,house_address,house_monthlyrent," +
-            "house_detail,house_area,house_use, house_type,house_floor,house_decoration,house.rent_time,rental_situation,rent_starttime" +
+    @Select("select house.house_id,house_tenant.tenant_id,house_owner.owner_name,house_tenant.tenant_name,house_address,house_monthlyrent,need_rent,actual_rent," +
+            "house_detail,house_area,house_use, house_type,house_floor,house_decoration,house.rent_time,rental_situation,rent_starttime,rent_status" +
             " from house_tenant,rent,house,house_owner " +
             "where house_tenant.tenant_id = rent.tenant_id and rent.house_id = house.house_id and rent.owner_id = house_owner.owner_id and " +
             "house_tenant.tenant_id = #{id}")
     List<TableAll> getTenantRent(Integer id);
+
+    //目的是查询租赁表中，某房客，支付后，所有的租赁的房子的订单记录
+    @Select("select house.house_id,house_tenant.tenant_id,house_owner.owner_name,house_tenant.tenant_name,house_address,house_monthlyrent,need_rent,actual_rent," +
+            "house_detail,house_area,house_use, house_type,house_floor,house_decoration,house.rent_time,rental_situation,rent_starttime,rent_status" +
+            " from house_tenant,rent,house,house_owner " +
+            "where house_tenant.tenant_id = rent.tenant_id and rent.house_id = house.house_id and rent.owner_id = house_owner.owner_id and " +
+            "house_tenant.tenant_id = #{id} and rent.rent_status = '1'")
+    List<TableAll> getTenantRented(Integer id);
 
     //目的是查询合同表中，某房主，拥有的所有的租赁的房子的合同情况
     @Select("select house.house_id,house_tenant.tenant_id,house_owner.owner_name,house_tenant.tenant_name,house_address,house_monthlyrent," +

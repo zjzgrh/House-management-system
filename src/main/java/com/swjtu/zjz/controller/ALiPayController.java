@@ -9,8 +9,13 @@ import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 
 import com.swjtu.zjz.config.AlipayConfig;
+import com.swjtu.zjz.dao.houseMapper;
+import com.swjtu.zjz.dao.rentMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,18 +24,38 @@ import java.io.IOException;
 @Controller
 public class ALiPayController {
 
+    @Autowired
+    private houseMapper houseMapper;
+
+    @Autowired
+    private rentMapper rentMapper;
+
     @RequestMapping("/topay")
-    public String toTest(){
+    public String toTest(Integer house_id,Model model){
+        int sum = houseMapper.getHouseRenttime(house_id) * houseMapper.getHousemonthlyrent(house_id);
+        model.addAttribute("sum",sum);
+        model.addAttribute("house_id", house_id);
+        rentMapper.updateActualRent(house_id,sum);
+        rentMapper.updateRentStatus();
         return "pay/topay";
     }
 
     @RequestMapping("/returnUrl")
     public String toSuccess(){
-        return "pay/paysuccess";
+        rentMapper.updateRentStatus();
+        return "redirect:/rentlist";
     }
 
+    @RequestMapping("/notifyUrl")
+    public String toSuccess2(){
+        rentMapper.updateRentStatus();
+        return "redirect:/rentlist";
+    }
+
+
     @RequestMapping("/pay")
-    public void payController(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void payController(@RequestParam("house_id") Integer house_id, HttpServletRequest request, HttpServletResponse response) throws IOException {
+
         //获得初始化的AlipayClient
         AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
 

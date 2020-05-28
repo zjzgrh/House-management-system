@@ -57,9 +57,11 @@ public class rentController {
         //将申请表中的申请结果设置为1
         houseapplyMapper.setApplyResultTrue(house_id,tenant_id);
 
+        //传数据到数据库中的租赁表
         houseMapper.updateRentalsituation('1',house_id);
         System.out.println("这里是两个ID：" + tenant_id + "   " +  house_id);
-        Rent rent = new Rent((Integer) session.getAttribute("userId"),tenant_id,house_id,new Date());
+        int need_rent = houseMapper.getHousemonthlyrent(house_id) * houseMapper.getHouseRenttime(house_id);
+        Rent rent = new Rent((Integer) session.getAttribute("userId"),tenant_id,house_id,new Date(),need_rent,0);
         rent.setRent_time(houseMapper.getHouseRenttime(house_id));
         System.out.println("传到数据库中的租赁表中的数据：" + rent);
         rentMapper.addHouseRent(rent);
@@ -104,10 +106,10 @@ public class rentController {
         return "renthouse/rentlist";
     }
 
-    //在房客界面，点击房屋租赁的已租赁房屋时，显示该房客已经租赁的所有的房屋信息
+    //在房客界面，点击房屋租赁的订单记录时，显示该房客已经租赁的所有的房屋信息
     @GetMapping("/rentedlist")
     public String showRentedList(HttpSession session, Model model){
-        List<TableAll> rentlists = joinMapper.getTenantRent((Integer) session.getAttribute("userId"));
+        List<TableAll> rentlists = joinMapper.getTenantRented((Integer) session.getAttribute("userId"));
         for(TableAll rentlist :rentlists){
             rentlist.setComment_detail(commentMapper.findCommentDetail(rentlist.getTenant_id(),rentlist.getHouse_id()));
         }

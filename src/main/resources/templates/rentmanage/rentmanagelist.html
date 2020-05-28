@@ -43,7 +43,7 @@
                             <th>描述</th>
                             <th>租赁时间</th>
                             <th>租期</th>
-                            <th>操作</th>
+                            <th>租金缴纳情况</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -61,7 +61,7 @@
                             <td th:text="${list.rent_starttime}"></td>
                             <td th:text="${list.rent_time}"></td>
                             <td>
-                                <a class="btn btn-sm btn-primary">催缴</a>
+                                <p class="" th:text="${list.rent_status} == '1' ? '已缴纳' : '未缴纳'"></p>
                             </td>
                         </tr>
                         </tbody>
