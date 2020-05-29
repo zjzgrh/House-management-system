@@ -80,11 +80,12 @@ public class rentController {
         return "redirect:/houseapply";
     }
 
-    //在房主系统，房子申请页面，点击拒绝时，把申请结果设置为0，显示为申请失败
+    //在房主系统，房子申请页面，点击拒绝时，把申请结果设置为0，显示为申请失败，申请状态设置为0
     @GetMapping("/refuserent")
     public String denyrenthouse( Integer house_id,Integer tenant_id,Model model,HttpSession session){
         //将申请表中的申请结果设置为0,代表申请失败
         //在设置时，如果申请已经被同意，则不进行操作，房子的租赁状态为1时，不进行操作
+        houseMapper.updateHouseApplySituation('0',house_id);
         if(houseMapper.getHouseRentalSituation(house_id) == '0')
             houseapplyMapper.setApplyResultFalse(house_id,tenant_id);
         return "redirect:/houseapply";

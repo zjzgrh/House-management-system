@@ -41,7 +41,6 @@ public class housetenantController {
         HouseTenant houseTenant = housetenantMapper.findTenantid((id));
         System.out.println("待修改的数据" + houseTenant);
         model.addAttribute("houseTenant",houseTenant);
-
         return "acc/updatetenantaccount";
     }
 
@@ -51,6 +50,11 @@ public class housetenantController {
                                       @RequestParam("age") Date age,@RequestParam("id") Integer id,
                                       HttpSession session){
 
+/*        char thegender;
+        if(gender.equals("男"))
+            thegender = '1';
+        else
+            thegender = '0';*/
         HouseTenant houseTenant = new HouseTenant(phonenum, password, nickname, gender, age);
         houseTenant.setTenant_id(id);
         housetenantMapper.updateHousetenant(houseTenant);

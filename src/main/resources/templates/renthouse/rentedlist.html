@@ -41,7 +41,7 @@
                             <th>楼层</th>
                             <th>装修情况</th>
                             <th>描述</th>
-                            <th>租赁时间</th>
+<!--                            <th>租赁时间</th>-->
                             <th>租期</th>
                             <th>操作</th>
                             <th>评价内容</th>
@@ -59,7 +59,7 @@
                             <td th:text="${list.house_floor}"></td>
                             <td th:text="${list.house_decoration}"></td>
                             <td th:text="${list.house_detail}"></td>
-                            <td th:text="${list.rent_starttime}"></td>
+<!--                            <td th:text="${list.rent_starttime}"></td>-->
                             <td th:text="${list.rent_time}"></td>
                             <td>
                                 <a th:href="@{/tocomment(tenant_id = ${list.tenant_id},house_id = ${list.house_id})}" class="btn btn-sm btn-primary">评论</a>

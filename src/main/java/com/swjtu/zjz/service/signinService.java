@@ -1,6 +1,5 @@
 package com.swjtu.zjz.service;
 
-import com.alibaba.druid.util.StringUtils;
 import com.swjtu.zjz.dao.houseownerMapper;
 import com.swjtu.zjz.dao.housetenantMapper;
 import com.swjtu.zjz.model.HouseOwner;
@@ -9,6 +8,7 @@ import com.swjtu.zjz.service.impl.signinServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.thymeleaf.util.StringUtils;
 
 @Service
 public class signinService implements signinServiceImpl {
@@ -21,22 +21,25 @@ public class signinService implements signinServiceImpl {
 
     @Override
     public String signin(String phonenum, String password, String role, Model model) {
-        //用户名和密码都为空
-        if (StringUtils.isEmpty(phonenum) && StringUtils.isEmpty(password)) {
-            model.addAttribute("msg", "请输入用户名和密码！");
-            return "redirect:/signin";
-        //用户名不为空，密码为空
-        } else if (!StringUtils.isEmpty(phonenum) && StringUtils.isEmpty(password)) {
 
-            model.addAttribute("phonenum", phonenum);
-            model.addAttribute("msg", "请输入密码！");
+        //用户名为空
+        if(StringUtils.isEmpty(phonenum) && !StringUtils.isEmpty(password)){
+            model.addAttribute("password",password);
+            model.addAttribute("msg","用户名为空啊！！！");
+            System.out.println("用户名为空啊");
             return "signin";
-        //用户名为空，密码不为空
-        } else if (StringUtils.isEmpty(phonenum) && !StringUtils.isEmpty(password)) {
-            model.addAttribute("password", password);
-            model.addAttribute("msg", "请输入手机号！");
+            //密码为空
+        }else if(!StringUtils.isEmpty(phonenum) && StringUtils.isEmpty(password)){
+            model.addAttribute("phonenum",phonenum);
+            model.addAttribute("msg","密码为空啊！！！");
+            System.out.println("密码为空啊");
             return "signin";
-        //用户名密码都不为空
+            //用户名和密码都为空
+        }else if(StringUtils.isEmpty(phonenum) && StringUtils.isEmpty(password)){
+            model.addAttribute("msg","用户名和密码为空啊！！！");
+            System.out.println("用户名和密码为空啊");
+            return "signin";
+            //用户名和密码都不为空，判断用户名和密码是否在数据库
         } else {
             //判断角色
             //房主用户的注册
@@ -50,7 +53,7 @@ public class signinService implements signinServiceImpl {
                 }
                 //判断密码格式，是否为6-20位
                 if(password.length() < 6 || password.length() > 20){
-                    model.addAttribute("password",password);
+                    model.addAttribute("phonenum",phonenum);
                     model.addAttribute("msg","密码格式错误，为6-20位字符或数字！");
                     return "signin";
                 }
@@ -75,6 +78,12 @@ public class signinService implements signinServiceImpl {
                 if(phonenum.length() != 11){
                     model.addAttribute("password",password);
                     model.addAttribute("msg","用户名格式错误，为11位手机号！");
+                    return "signin";
+                }
+                //判断密码格式，是否为6-20位
+                if(password.length() < 6 || password.length() > 20){
+                    model.addAttribute("phonenum",phonenum);
+                    model.addAttribute("msg","密码格式错误，为6-20位字符或数字！");
                     return "signin";
                 }
 

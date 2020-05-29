@@ -24,6 +24,16 @@
                 <form class="form-horizontal" th:action="@{/tenant}" method="post">
                     <!--                    <input type="hidden" name="_method" value="put" >-->
                     <!--                    <input type="hidden" name="id" >-->
+
+                    <div class="form-group">
+                        <label class="col-sm-7 control-label">
+                            <span  style="color:red" th:text="${realname}" if="${not #strings.isEmpty(realname)}"></span>
+                        </label>
+                        <div class="col-sm-4">
+                            <input type="hidden">
+                        </div>
+                    </div>
+
                     <!-- 房主身份证号  -->
                     <div class="form-group">
                         <label class="col-sm-4 control-label">房主身份证号</label>

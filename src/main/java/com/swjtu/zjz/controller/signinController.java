@@ -18,6 +18,6 @@ public class signinController {
                          @RequestParam("password") String password,
                          @RequestParam("role") String role,
                          Model model) {
-        return signinService.signin(password, password, role, model);
+        return signinService.signin(phonenum, password, role, model);
     }
 }

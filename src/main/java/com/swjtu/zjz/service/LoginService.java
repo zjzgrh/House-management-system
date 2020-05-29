@@ -27,15 +27,19 @@ public class LoginService implements loginServiceImpl {
         if(StringUtils.isEmpty(phonenum) && !StringUtils.isEmpty(password)){
             model.addAttribute("password",password);
             model.addAttribute("msg","用户名为空啊！！！");
+            System.out.println("用户名为空啊");
             return "login";
             //密码为空
         }else if(!StringUtils.isEmpty(phonenum) && StringUtils.isEmpty(password)){
             model.addAttribute("phonenum",phonenum);
             model.addAttribute("msg","密码为空啊！！！");
+            System.out.println("密码为空啊");
+
             return "login";
             //用户名和密码都为空
         }else if(StringUtils.isEmpty(phonenum) && StringUtils.isEmpty(password)){
             model.addAttribute("msg","用户名和密码为空啊！！！");
+            System.out.println("用户名和密码为空啊");
             return "login";
             //用户名和密码都不为空，判断用户名和密码是否在数据库
         }else {
@@ -51,6 +55,7 @@ public class LoginService implements loginServiceImpl {
                     model.addAttribute("phonenum", phonenum);
                     model.addAttribute("password", password);
                     model.addAttribute("msg", "用户名不存在，请检查用户名或进行注册！");
+                    System.out.println("用户名不存在，请检查用户名或进行注册！");
                     return "login";
                 }
                 //用户名存在数据库，判断密码是否正确，正确就进入主页

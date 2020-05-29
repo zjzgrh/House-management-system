@@ -46,8 +46,16 @@ public class houseownerController {
     private String updateOwnerAccount(@RequestParam("phonenum") String phonenum, @RequestParam("password") String password,
                                       @RequestParam("nickname") String nickname, @RequestParam("gender") char gender,
                                       @RequestParam("age") Date age,@RequestParam("id") Integer id,
-                                      HttpSession session){
-
+                                        HttpSession session){
+        /*char thegender;
+        if(gender.equals("男")) {
+            thegender = '1';
+            System.out.println("是个1");
+        }
+        else{
+            thegender = '0';
+            System.out.println("是个0");
+        }*/
         HouseOwner houseOwner = new HouseOwner(phonenum, password, nickname, gender, age);
         houseOwner.setOwner_id(id);
         System.out.println("修改的数据： " + houseOwner);

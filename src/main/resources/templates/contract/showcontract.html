@@ -44,7 +44,6 @@
                             <th>租期</th>
                             <th>合同起始时间</th>
                             <th>到期时间</th>
-                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -60,12 +59,8 @@
                             <td th:text="${list.house_decoration}"></td>
                             <td th:text="${list.house_detail}"></td>
                             <td th:text="${list.rent_time}"></td>
-                            <td th:text="${list.contract_startdate}"></td>
-                            <td th:text="${list.contract_enddate}"></td>
-                            <td>
-                                <a th:href="@{/toupdatehousecontrat(owner_id = ${list.owner_id},tenant_id = ${list.tenant_id},house_id = ${list.house_id},
-                                    contract_startdate = ${list.contract_startdate})}" class="btn btn-sm btn-primary">修改</a>
-                            </td>
+                            <td th:text="${list.date_start}"></td>
+                            <td th:text="${list.date_end}"></td>
                         </tr>
                         </tbody>
                     </table>

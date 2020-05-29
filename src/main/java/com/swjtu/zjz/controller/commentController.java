@@ -35,7 +35,7 @@ public class commentController {
         System.out.println("这里是某房子的评论内容,接下来会将内容写入数据库：" + houseComment + comment);
         commentMapper.addComment(houseComment);
         commentMapper.updateComment(comment,tenant_id,house_id);
-        return "renthouse/rentedlist";
+        return "redirect:/rentedlist";
     }
 
     //取消评论，就一个简单的界面跳转

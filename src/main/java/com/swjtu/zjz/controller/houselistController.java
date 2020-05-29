@@ -95,7 +95,7 @@ public class houselistController {
                          @RequestParam("Floor") Integer Floor,@RequestParam("Decoration") String Decoration,
                          @RequestParam("Renttime") Integer Renttime){
 
-        House house = new House(Address, Monthlyrent, Decoration, Area, Use, Type, Floor, Decoration, Renttime);
+        House house = new House(Address, Monthlyrent, Detail, Area, Use, Type, Floor, Decoration, Renttime);
         house.setHouse_id(id);
         System.out.println(house);
         houseMapper.updateHouse(house);

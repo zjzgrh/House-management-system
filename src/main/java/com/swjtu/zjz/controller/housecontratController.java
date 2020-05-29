@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -35,6 +36,13 @@ public class housecontratController {
     public String housecontratlist(HttpSession session, Model model) {
         List<TableAll> contractlists = joinMapper.getOwnerContract((Integer) session.getAttribute("userId"));
         //List<HouseContract> contractlists = housecontractMapper.getHouseContract((Integer) session.getAttribute("userId"));
+
+        SimpleDateFormat sdf = new SimpleDateFormat();
+        for(TableAll contractlist:contractlists){
+            contractlist.setDate_start(sdf.format(contractlist.getContract_startdate()));
+            contractlist.setDate_end(sdf.format(contractlist.getContract_enddate()));
+        }
+
         model.addAttribute("contractlists", contractlists);
         System.out.println("这里是输出到界面的数据：" + contractlists);
         return "contract/showcontract";
@@ -66,6 +74,11 @@ public class housecontratController {
     public String getTenantContract(HttpSession session, Model model) {
         List<TableAll> contractlists = joinMapper.getTenantContract((Integer) session.getAttribute("userId"));
         //List<HouseContract> contractlists = housecontractMapper.getHouseContract((Integer) session.getAttribute("userId"));
+        SimpleDateFormat sdf = new SimpleDateFormat();
+        for(TableAll contractlist:contractlists){
+            contractlist.setDate_start(sdf.format(contractlist.getContract_startdate()));
+            contractlist.setDate_end(sdf.format(contractlist.getContract_enddate()));
+        }
         model.addAttribute("contractlists", contractlists);
         return "contract/showtenantcontract";
     }
